@@ -1,23 +1,15 @@
-<?php include("../layout/header.php"); ?>
+<?php include("../layout/teacher_header.php"); ?>
 
-<div class="addExam">
+<div class="newExam">
     <h1 align="center">New Exam</h1>
     <div class="row">
-        <div class="col-25">
-            <label for="fname">Exam Name</label>
-        </div>
-        <div class="col-75">
-            <input type="text" id="examName" name="examName" placeholder="* Exam name">
-        </div>
+        <label for="fname">Exam Name</label>
+        <input type="text" id="examName" name="examName" placeholder="* Exam name">
+        <label for="fname">Total Points</label>
+        <input type="text" id="totalPoints" name="totalPoints" placeholder="* Total Points">
+        
     </div>
-    <div class="row">
-        <div class="col-25">
-            <label for="fname">Total Points</label>
-        </div>
-        <div class="col-75">
-            <input type="text" id="totalPoints" name="totalPoints" placeholder="* Total Points">
-        </div>
-    </div>
+  
 </div>
 
 <div id="chooseQuestion">
@@ -28,27 +20,21 @@
         <div id="sortInputs">
             <label for="fname">Sort by:</label>
             <div class="searchSort">
-                <form>
-                    <input type="text" placeholder="constraint" name="searchConstraint">
-                    
-                </form>
+                <input id="filterTopic" type="text" placeholder="topic" name="searchTopic" onkeyup="filterTopic()">
             </div>
             <div class="searchSort" style="padding-left: 5px">
-                <form>
-                    <input type="text" placeholder="difficulty" name="searchDifficulty">
-                    
-                </form>
+                <input id="filterDifficulty" type="text" placeholder="difficulty" name="searchDifficulty" onkeyup="filterDifficulty()">
             </div>
         </div>
     </div> 
 
     <div id="selectQuestionDiv">
-        <table id="customers">
+        <table id="questionTable">
             <tr>
                 <th>Question ID</th>
                 <th>Question</th>
                 <th>Function Name</th>
-                <th>Constraint</th>
+                <th>Topic</th>
                 <th>Difficulty</th>
                 <th>Choose</th>
             </tr>
@@ -56,8 +42,40 @@
                 <td>1</td>
                 <td>Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa.</td>
                 <td>funcName</td>
-                <td>for loop</td>
-                <td>Medium</td>
+                <td>if</td>
+                <td>medium</td>
+                <td><input id="addBtn" type="button" value="Add" onclick="addQuestionToExam()"></td>
+            </tr>
+            <tr>
+                <td>2</td>
+                <td>Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa.</td>
+                <td>funcName</td>
+                <td>general</td>
+                <td>easy</td>
+                <td><input id="addBtn" type="button" value="Add" onclick="addQuestionToExam()"></td>
+            </tr>
+            <tr>
+                <td>3</td>
+                <td>Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa.</td>
+                <td>funcName</td>
+                <td>arrays</td>
+                <td>hard</td>
+                <td><input id="addBtn" type="button" value="Add" onclick="addQuestionToExam()"></td>
+            </tr>
+            <tr>
+                <td>4</td>
+                <td>Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa.</td>
+                <td>funcName</td>
+                <td>general</td>
+                <td>easy</td>
+                <td><input id="addBtn" type="button" value="Add" onclick="addQuestionToExam()"></td>
+            </tr>
+            <tr>
+                <td>5</td>
+                <td>Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa.</td>
+                <td>funcName</td>
+                <td>general</td>
+                <td>medium</td>
                 <td><input id="addBtn" type="button" value="Add" onclick="addQuestionToExam()"></td>
             </tr>
            
@@ -82,4 +100,4 @@
     </div>
 </div>
 
-<?php include("../layout/footer.php"); ?>
+<?php include("../layout/teacher_footer.php"); ?>

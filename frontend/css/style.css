@@ -6,9 +6,9 @@ body {
 
 .container {
   margin-top: 5%;
-  height: auto;
   justify-content: center;
   display: flex;
+  overflow-y: scroll;
 }
 
 #cssmenu ul {
@@ -59,12 +59,6 @@ body {
   background: #f6f6f6;
 }
 
-#invalid_msg,
-#invalid_msg_modal {
-  font-size: 10pt;
-  color: rgb(252, 0, 0);
-}
-
 #cssmenu > ul > li a {
   line-height: 35px;
 }
@@ -77,7 +71,7 @@ body {
   -moz-box-shadow: 0 2px 2px 1px rgba(0, 0, 0, 0.3);
   -webkit-box-shadow: 0 2px 2px 1px rgba(0, 0, 0, 0.3);
   margin: 10px;
-  height: 550px;
+  height: auto;
   width: 45%;
   padding: 10px;
   border-radius: 8px;
@@ -88,12 +82,12 @@ body {
   resize: none;
 }
 
-.questionBank {
+.addedQuestions {
   background: #e5e5e5;
   margin: 10px;
   min-height: 300px;
-  height: 550px;
-  width: auto;
+  height: auto;
+  width: 50%;
   padding: 10px;
   border-radius: 8px;
   background: -moz-linear-gradient(top, #e5e5e5 0%, #dddddd 100%);
@@ -168,10 +162,10 @@ label {
   display: inline-block;
 }
 
-#createBtn input {
+#createBtn,
+#modalSaveBtn {
   background-color: #4caf50;
   color: white;
-  margin: 10px;
   padding: 12px 20px;
   border: none;
   border-radius: 4px;
@@ -179,22 +173,9 @@ label {
   float: right;
 }
 
-.col-25 {
-  float: left;
-  width: 25%;
-  margin-top: 6px;
-}
-
-.col-75 {
-  float: left;
-  width: 75%;
-  margin-top: 6px;
-}
-
-.row:after {
-  content: "";
-  display: table;
-  clear: both;
+.row select {
+  height: 45px !important;
+  font-size: 10pt;
 }
 
 #difficulty {
@@ -274,7 +255,7 @@ label {
   background: #e5e5e5;
   margin: auto;
   padding: 20px;
-  height: 500px;
+  height: 580px;
   width: 700px;
   border-radius: 8px;
   background: -moz-linear-gradient(top, #e5e5e5 0%, #dddddd 100%);
@@ -285,7 +266,7 @@ label {
 }
 
 .modal-content textarea {
-  max-height: 400px;
+  max-height: 380px;
   resize: none;
 }
 
@@ -304,24 +285,60 @@ label {
   cursor: pointer;
 }
 
-#customers {
+#questionTable {
   font-family: "Trebuchet MS", Arial, Helvetica, sans-serif;
   border-collapse: collapse;
   width: 100%;
 }
 
-#customers td,
-#customers th {
+#questionTable td,
+#questionTable th {
   border: 1px solid #ddd;
   padding: 8px;
 }
 
-#customers tr:nth-child(even) {
+#questionTable tr:nth-child(even) {
   background-color: #f2f2f2;
 }
 
-#customers tr:hover {
+#questionTable tr:hover {
   background-color: #ddd;
+}
+
+#questionTable th {
+  padding-top: 12px;
+  padding-bottom: 12px;
+  text-align: left;
+  background-color: #4caf50;
+  color: white;
+}
+
+#questionTableCQ {
+  font-family: "Trebuchet MS", Arial, Helvetica, sans-serif;
+  border-collapse: collapse;
+  width: 100%;
+}
+
+#questionTableCQ td,
+#questionTableCQ th {
+  border: 1px solid #ddd;
+  padding: 8px;
+}
+
+#questionTableCQ tr:nth-child(even) {
+  background-color: #f2f2f2;
+}
+
+#questionTableCQ tr:hover {
+  background-color: #ddd;
+}
+
+#questionTableCQ th {
+  padding-top: 12px;
+  padding-bottom: 12px;
+  text-align: left;
+  background-color: #4caf50;
+  color: white;
 }
 
 #examAddedQuestions {
@@ -353,14 +370,6 @@ th {
   color: white;
 }
 
-#customers th {
-  padding-top: 12px;
-  padding-bottom: 12px;
-  text-align: left;
-  background-color: #4caf50;
-  color: white;
-}
-
 #chooseQuestion {
   background: #e5e5e5;
   background: -moz-linear-gradient(top, #e5e5e5 0%, #dddddd 100%);
@@ -376,13 +385,13 @@ th {
 }
 
 #selectQuestionDiv {
-  overflow: scroll;
+  overflow-y: scroll;
+  overflow-x: hidden;
   width: auto;
   height: 430px;
-  margin: 20px;
 }
 
-.addExam {
+.newExam {
   background: #e5e5e5;
   background: -moz-linear-gradient(top, #e5e5e5 0%, #dddddd 100%);
   background: -webkit-linear-gradient(top, #e5e5e5 0%, #dddddd 100%);
@@ -390,8 +399,8 @@ th {
   -moz-box-shadow: 0 2px 2px 1px rgba(0, 0, 0, 0.3);
   -webkit-box-shadow: 0 2px 2px 1px rgba(0, 0, 0, 0.3);
   margin: 10px;
-  height: 230px;
-  width: 45%;
+  height: auto;
+  width: 35%;
   padding: 10px;
   border-radius: 8px;
 }
@@ -428,12 +437,12 @@ th {
   width: 45%;
   padding: 10px;
   border-radius: 8px;
-  overflow: scroll;
 }
 
 #sortQuestions {
   width: auto;
   height: 50px;
+  margin-bottom: 10px;
 }
 
 #sortDiff {
@@ -445,14 +454,65 @@ th {
 
 #sortInputs {
   height: auto;
-  width: 390px;
+  width: auto;
   display: flex;
   float: right;
 }
 
 .addedQuestionTable {
   width: auto;
-  height: 400px;
-  overflow: scroll;
+  height: 390px;
+  overflow-y: scroll;
+  overflow-x: hidden;
   margin-top: 10px;
+}
+
+.viewExams {
+  background: #e5e5e5;
+  background: -moz-linear-gradient(top, #e5e5e5 0%, #dddddd 100%);
+  background: -webkit-linear-gradient(top, #e5e5e5 0%, #dddddd 100%);
+  box-shadow: 0 2px 2px 1px rgba(0, 0, 0, 0.3);
+  -moz-box-shadow: 0 2px 2px 1px rgba(0, 0, 0, 0.3);
+  -webkit-box-shadow: 0 2px 2px 1px rgba(0, 0, 0, 0.3);
+  margin: 10px;
+  height: 530px;
+  width: 30%;
+  padding: 10px;
+  border-radius: 8px;
+}
+
+#takeExamDiv {
+  background: #e5e5e5;
+  background: -moz-linear-gradient(top, #e5e5e5 0%, #dddddd 100%);
+  background: -webkit-linear-gradient(top, #e5e5e5 0%, #dddddd 100%);
+  box-shadow: 0 2px 2px 1px rgba(0, 0, 0, 0.3);
+  -moz-box-shadow: 0 2px 2px 1px rgba(0, 0, 0, 0.3);
+  -webkit-box-shadow: 0 2px 2px 1px rgba(0, 0, 0, 0.3);
+  margin: 10px;
+  height: 640px;
+  width: 80%;
+  padding: 10px;
+  border-radius: 8px;
+  overflow: scroll;
+}
+
+.takeExamQ {
+  width: 100%;
+  height: auto;
+}
+
+#answerTextArea {
+  width: 50%;
+  min-height: 300px;
+  margin-top: auto;
+  margin-bottom: 12px;
+  resize: none;
+}
+
+@media only screen and (max-width: 600px) {
+  /* For mobile phones: */
+
+  [class*="container"] {
+    width: 100%;
+  }
 }

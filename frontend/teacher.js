@@ -1,20 +1,18 @@
 // create a new question
 function createQuestion() {
-  var functionName = document.querySelector("#functionName");
-  var difficulty = document.querySelector("#difficulty");
-  var question = document.querySelector("#question");
-  var invalid_msg = document.querySelector("#invalid_msg");
+  var functionName = document.querySelector("#functionName").value;
+  var topic = document.querySelector("#topic").value;
+  var difficulty = document.querySelector("#difficulty").value;
+  var question = document.querySelector("#question").value;
 
-  if (functionName.value == "" || question.value == "") {
-    invalid_msg.innerHTML = "You must input required fields.";
+  if (question == "" || topic == "" || difficulty == "" || functionName == "") {
+    alert("All input fields are required.");
   } else {
-    invalid_msg.innerHTML = "";
-
     var dataObj = {
-      function: functionName.value,
-      constraint: constraint.value,
-      difficulty: difficulty.value,
-      question: question.value
+      function: functionName,
+      topic: topic,
+      difficulty: difficulty,
+      question: question
     };
 
     sendAjaxRequest(dataObj, "question.php");
@@ -23,10 +21,10 @@ function createQuestion() {
 
 //edit a question
 function editQuestion() {
-  var functionName = document.querySelector("#modalFunctionName");
-  var difficulty = document.querySelector("#modalDifficulty");
-  var question = document.querySelector("#modalQuestion");
-  var invalid_msg = document.querySelector("#invalid_msg_modal");
+  var functionName = document.querySelector("#modalFunctionName").value;
+  var topic = document.querySelector("#modalTopic").value;
+  var difficulty = document.querySelector("#modalDifficulty").value;
+  var question = document.querySelector("#modalQuestion").value;
   var modal = document.getElementById("myModal");
   // Get the <span> element that closes the modal
   var span = document.getElementsByClassName("close")[0];
@@ -34,25 +32,27 @@ function editQuestion() {
   modal.style.display = "block";
   span.onclick = function() {
     modal.style.display = "none";
-    invalid_msg.innerHTML = "";
   };
   window.onclick = function(event) {
     if (event.target == modal) {
       modal.style.display = "none";
-      invalid_msg.innerHTML = "";
     }
   };
 
-  document.querySelector("#saveBtn").addEventListener("click", function() {
-    if (functionName.value == "" || question.value == "") {
-      invalid_msg.innerHTML = "You must input required fields.";
+  document.querySelector("#modalSaveBtn").addEventListener("click", function() {
+    if (
+      question == "" ||
+      topic == "" ||
+      difficulty == "" ||
+      functionName == ""
+    ) {
+      console.log("SOmething is empty");
     } else {
-      invalid_msg.innerHTML = "";
       var dataObj = {
-        function: functionName.value,
-        constraint: constraint.value,
-        difficulty: difficulty.value,
-        question: question.value
+        function: functionName,
+        topic: topic,
+        difficulty: difficulty,
+        question: question
       };
     }
   });
@@ -108,7 +108,6 @@ function createNewExam() {
   }
 }
 
-// Send Ajax
 function sendAjaxRequest(obj, file) {
   var data = JSON.stringify(obj);
 
