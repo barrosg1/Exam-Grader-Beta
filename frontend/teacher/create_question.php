@@ -49,18 +49,6 @@
         </div>
     </div> 
 
-    <!-- <div class="questionList">
-        <div class="question">
-            <p id="parDiff">Medium</p>
-            <p id="questionDisplay">Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus.
-           </p>
-            <strong><p style="float:left; font-size: 9pt; color: gray">Name: funcName |  Constraint: for loop</p></strong>
-            
-            <input id="editBtn" type="button" value="Edit" onclick="editQuestion()">
-            <input id="deleteBtn" type="button" value="Delete" onclick="deleteQuestion()">
-        </div> 
-    </div> -->
-
     <div id="selectQuestionDiv">
         <table id="questionTableCQ">
             <tr>
@@ -69,7 +57,7 @@
                 <th>Difficulty</th>
                 <th>Choose</th>
             </tr>
-            <tbody id="dataCQ"></tbody>
+            <tbody id="dataCQ" ></tbody> <!-- Data will be displayed here -->
            
         </table>
     </div> 

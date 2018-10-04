@@ -101,9 +101,9 @@ function getQuestionsCQ() {
         html += "<td>" + difficulty + "</td>";
         html += "<td>";
         html +=
-          "<input id='editBtn' type='button' value='Edit' onclick='editQuestion()'>";
+          "<input id='editBtn' style='float:left' type='button' value='Edit' onclick='editQuestion()'>";
         html +=
-          "<input id='deleteBtn' type='button' value='Delete' onclick='deleteQuestion(" +
+          "<input id='deleteBtn' style='float:left' type='button' value='Delete' onclick='deleteQuestion(" +
           id +
           "," +
           "this)'>";
@@ -181,14 +181,17 @@ function createNewExam() {
   if (examName == "" || totalPoints == "") {
     alert("Please input required fields.");
   } else {
-    var dataObj = {
-      examName: examName,
-      totalPoints: totalPoints,
-      selectedQ: SELECTED_QUESTIONS
-    };
+    if (SELECTED_QUESTIONS.length == 0) {
+      alert("You must select at least one question");
+    } else {
+      var dataObj = {
+        examName: examName,
+        totalPoints: totalPoints,
+        selectedQ: SELECTED_QUESTIONS
+      };
 
-    //window.location.replace("view_exams.php");
-
-    console.log(JSON.stringify(dataObj));
+      //window.location.replace("view_exams.php");
+      console.log(JSON.stringify(dataObj));
+    }
   }
 }
