@@ -21,7 +21,8 @@ function addQuestion() {
     request.onreadystatechange = function() {
       if (this.readyState == 4 && this.status == 200) {
         //var response = JSON.parse(this.responseText);
-        console.log(this.responseText);
+        //alert(response);
+        //console.log(this.responseText);
 
         getQuestionsCQ();
       }
@@ -40,7 +41,6 @@ function getQuestions() {
       var response = JSON.parse(this.responseText);
       console.log(response);
 
-      var table = document.getElementById("questionTable");
       var html = "";
 
       // looping through the data response
@@ -60,7 +60,7 @@ function getQuestions() {
         html += "</tr>";
       }
 
-      table.insertAdjacentHTML("beforeend", html);
+      document.getElementById("dataExam").innerHTML = html;
     }
   };
 
@@ -68,7 +68,7 @@ function getQuestions() {
   request.send(null);
 }
 
-// get questions from create question page
+// get questions from create question page | CQ = create question
 function getQuestionsCQ() {
   var request = new XMLHttpRequest();
   request.onreadystatechange = function() {
@@ -76,7 +76,6 @@ function getQuestionsCQ() {
       var response = JSON.parse(this.responseText);
       console.log(response);
 
-      var table = document.getElementById("questionTableCQ");
       var html = "";
 
       // looping through the data response
@@ -98,13 +97,12 @@ function getQuestionsCQ() {
           "<input id='deleteBtn' type='button' value='Delete' onclick='deleteQuestion(" +
           id +
           "," +
-          a +
-          ")'>";
+          "this)'>";
         html += "</td>";
         html += "</tr>";
       }
 
-      table.insertAdjacentHTML("beforeend", html);
+      document.getElementById("dataCQ").innerHTML = html;
     }
   };
 
@@ -112,7 +110,7 @@ function getQuestionsCQ() {
   request.send(null);
 }
 
-function deleteQuestion(questionId, index) {
+function deleteQuestion(questionId, row) {
   if (confirm("Are you sure you want to delete this question?") == true) {
     var dataObj = { id: questionId };
 
@@ -123,6 +121,10 @@ function deleteQuestion(questionId, index) {
       if (this.readyState == 4 && this.status == 200) {
         var response = JSON.parse(this.responseText);
         console.log(response);
+
+        // delete specified row
+        var i = row.parentNode.parentNode.rowIndex;
+        document.getElementById("questionTableCQ").deleteRow(i);
       }
     };
 
@@ -133,7 +135,7 @@ function deleteQuestion(questionId, index) {
 
 //edit a question
 function editQuestion() {
-  var topic = document.querySelector("#modalTopic").v;
+  var topic = document.querySelector("#modalTopic").value;
   var difficulty = document.querySelector("#modalDifficulty").value;
   var question = document.querySelector("#modalQuestion").value;
   var modal = document.getElementById("myModal");
@@ -163,25 +165,6 @@ function editQuestion() {
   });
 }
 
-// // Add question to the exam (not saved to the db yet)
-// function addQuestionToExam(questionId) {
-//   var addedQuestion = document.getElementById("examAddedQuestions");
-//   var html = "";
-
-//   document.getElementById(questionId).disabled = true;
-
-//   html += "<tr>";
-//   html += "<td>" + questionId + "</td>";
-//   html +=
-//     "<td><input id='saveBtn' type='button' value='Delete' onclick='removeQuestionFromExam()'></td>";
-//   html += "</tr>";
-
-//   //addBtn.disabled = true;
-//   addedQuestion.insertAdjacentHTML("beforeend", html);
-
-//   return questionId;
-// }
-
 // create a new exam after clicking on save button (saved to the db)
 function createNewExam() {
   var examName = document.getElementById("examName");
@@ -192,8 +175,3 @@ function createNewExam() {
   } else {
   }
 }
-
-window.addEventListener("load", function() {
-  getQuestions();
-  getQuestionsCQ();
-});

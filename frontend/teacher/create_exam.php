@@ -1,4 +1,4 @@
-<?php include("../layout/teacher_header.php"); ?>
+<?php include("../layout/header.php"); ?>
 
 <div class="newExam">
     <h1 align="center">New Exam</h1>
@@ -16,28 +16,33 @@
     <h1 align="center">Choose Question</h1>
 
      <!-- sorting search -->
-     <div id="sortQuestions">
-        <div id="sortInputs">
-            <label for="fname">Sort by:</label>
-            <div class="searchSort">
-                <input id="filterTopic" type="text" placeholder="topic" name="searchTopic" onkeyup="filterTopic()">
+        <div id="sortQuestions">
+            <div id="sortInputs">
+                <label for="fname">Sort by:</label>
+                <div class="searchSort">
+                    <input id="filterTopic" type="text" placeholder="topic" name="searchTopic" onkeyup="filterTopic()">
+                </div>
+                <div class="searchSort" style="padding-left: 5px">
+                    <input id="filterDifficulty" type="text" placeholder="difficulty" name="searchDifficulty" onkeyup="filterDifficulty()">
+                </div>
             </div>
-            <div class="searchSort" style="padding-left: 5px">
-                <input id="filterDifficulty" type="text" placeholder="difficulty" name="searchDifficulty" onkeyup="filterDifficulty()">
-            </div>
-        </div>
-    </div> 
+        </div> 
 
     <div id="selectQuestionDiv">
-        <table id="questionTable">
-            <tr>
-                <th>Question</th>
-                <th>Topic</th>
-                <th>Difficulty</th>
-                <th>Choose</th>
-            </tr>   
-        </table>
+        <center> 
+            <table id="questionTable">
+                <tr>
+                    <th>Question</th>
+                    <th>Topic</th>
+                    <th>Difficulty</th>
+                    <th>Choose</th>
+
+                    <tbody id="dataExam"></tbody>
+                </tr>   
+            </table>
+        </center>
     </div> 
+    <center><input id="examSaveBtn" type="button" value="Save"></center>
 </div>
 
 <!-- <div id="allExamQuestions">
@@ -56,4 +61,4 @@
     </div>
 </div> -->
 
-<?php include("../layout/teacher_footer.php"); ?>
+<?php include("../layout/footer.php"); ?>

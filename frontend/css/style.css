@@ -288,7 +288,7 @@ label {
 #questionTable {
   font-family: "Trebuchet MS", Arial, Helvetica, sans-serif;
   border-collapse: collapse;
-  width: 100%;
+  width: 85%;
 }
 
 #questionTable td,
@@ -378,7 +378,7 @@ th {
   -moz-box-shadow: 0 2px 2px 1px rgba(0, 0, 0, 0.3);
   -webkit-box-shadow: 0 2px 2px 1px rgba(0, 0, 0, 0.3);
   margin: 10px;
-  height: 620px;
+  height: 670px;
   width: 90%;
   padding: 10px;
   border-radius: 8px;
@@ -410,18 +410,19 @@ th {
   font-size: 12pt;
 }
 
-#examSaveBtn input {
+#examSaveBtn {
   background-color: rgb(113, 153, 238);
+  margin: 30px;
   color: white;
   font-size: 10pt;
   padding: 12px 20px;
   border: none;
-  width: 200px;
+  width: 220px;
   border-radius: 4px;
   cursor: pointer;
 }
 
-#examSaveBtn input:hover {
+#examSaveBtn:hover {
   background-color: rgb(146, 182, 255);
 }
 

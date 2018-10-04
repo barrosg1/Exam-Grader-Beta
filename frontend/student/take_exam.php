@@ -1,4 +1,4 @@
-<?php include("../layout/student_header.php"); ?>
+<?php include("../layout/header.php"); ?>
 
     <div id="takeExamDiv">
         <div class="takeExamQ">

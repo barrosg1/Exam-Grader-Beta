@@ -1,4 +1,4 @@
-<?php include("../layout/teacher_header.php"); ?>
+<?php include("../layout/header.php"); ?>
 
     <div class="viewExams">
         <h1 align="center">Exams</h1>

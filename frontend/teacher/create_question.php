@@ -1,4 +1,4 @@
-<?php include("../layout/teacher_header.php"); ?>
+<?php include("../layout/header.php"); ?>
 
 <div class="addQuestion">
     <h1 align="center">Create Question</h1>
@@ -25,6 +25,7 @@
             <label for="question">Question</label>
             <textarea id="question" placeholder="* write question.. " style="height:200px"></textarea>
     
+            
             <input id="createBtn" type="button" value="Add Question" onclick="addQuestion();">
         </div>
     </form>
@@ -68,7 +69,7 @@
                 <th>Difficulty</th>
                 <th>Choose</th>
             </tr>
-            
+            <tbody id="dataCQ"></tbody>
            
         </table>
     </div> 
@@ -114,4 +115,4 @@
 
 </div>
 
-<?php include("../layout/teacher_footer.php"); ?>
+<?php include("../layout/footer.php"); ?>

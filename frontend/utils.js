@@ -71,3 +71,8 @@ function filterDifficultyCQ() {
     }
   }
 }
+
+window.addEventListener("load", function() {
+  getQuestions();
+  getQuestionsCQ();
+});
