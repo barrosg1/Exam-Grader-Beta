@@ -42,7 +42,7 @@
             </table>
         </center>
     </div> 
-    <center><input id="examSaveBtn" type="button" value="Save"></center>
+    <center><input id="examSaveBtn" type="button" value="Save" onclick="createNewExam()"></center>
 </div>
 
 <!-- <div id="allExamQuestions">

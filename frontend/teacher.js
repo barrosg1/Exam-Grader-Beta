@@ -1,3 +1,6 @@
+// GLOBAL VARIABLES
+var SELECTED_QUESTIONS = [];
+
 // create a new question
 function addQuestion() {
   var topic = document.querySelector("#topic").value;
@@ -12,8 +15,6 @@ function addQuestion() {
       difficulty: difficulty,
       question: question
     };
-
-    console.log(dataObj);
 
     var data = JSON.stringify(dataObj);
 
@@ -39,12 +40,12 @@ function getQuestions() {
   request.onreadystatechange = function() {
     if (this.readyState == 4 && this.status == 200) {
       var response = JSON.parse(this.responseText);
-      console.log(response);
 
       var html = "";
 
       // looping through the data response
       for (var a = 0; a < response.length; a++) {
+        var id = response[a].id;
         var topic = response[a].type;
         var difficulty = response[a].difficulty;
         var question = response[a].data;
@@ -55,7 +56,11 @@ function getQuestions() {
         html += "<td>" + topic + "</td>";
         html += "<td>" + difficulty + "</td>";
         html += "<td>";
-        html += "<input type='checkbox' class='checkBox'>";
+        html +=
+          "<input type='checkbox' class='checkBox' onclick='checkedBox(" +
+          id +
+          "," +
+          "this)'>";
         html += "</td>";
         html += "</tr>";
       }
@@ -68,14 +73,18 @@ function getQuestions() {
   request.send(null);
 }
 
+function checkedBox(questionId, box) {
+  if (box.checked) {
+    SELECTED_QUESTIONS.push(questionId);
+  }
+}
+
 // get questions from create question page | CQ = create question
 function getQuestionsCQ() {
   var request = new XMLHttpRequest();
   request.onreadystatechange = function() {
     if (this.readyState == 4 && this.status == 200) {
       var response = JSON.parse(this.responseText);
-      console.log(response);
-
       var html = "";
 
       // looping through the data response
@@ -120,7 +129,6 @@ function deleteQuestion(questionId, row) {
     request.onreadystatechange = function() {
       if (this.readyState == 4 && this.status == 200) {
         var response = JSON.parse(this.responseText);
-        console.log(response);
 
         // delete specified row
         var i = row.parentNode.parentNode.rowIndex;
@@ -167,11 +175,20 @@ function editQuestion() {
 
 // create a new exam after clicking on save button (saved to the db)
 function createNewExam() {
-  var examName = document.getElementById("examName");
-  var totalPoints = document.getElementById("totalPoints");
+  var examName = document.getElementById("examName").value;
+  var totalPoints = document.getElementById("totalPoints").value;
 
-  if (examName.value == "" || totalPoints.value == "") {
+  if (examName == "" || totalPoints == "") {
     alert("Please input required fields.");
   } else {
+    var dataObj = {
+      examName: examName,
+      totalPoints: totalPoints,
+      selectedQ: SELECTED_QUESTIONS
+    };
+
+    //window.location.replace("view_exams.php");
+
+    console.log(JSON.stringify(dataObj));
   }
 }
