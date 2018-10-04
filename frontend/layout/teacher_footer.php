@@ -21,8 +21,6 @@
 
         }
     </script>
-    <script src="../teacher.js"></script>
-    <script src="../utils.js"></script>
 </body>
 <html>
 

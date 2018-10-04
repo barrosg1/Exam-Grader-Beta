@@ -1,28 +1,139 @@
 // create a new question
-function createQuestion() {
-  var functionName = document.querySelector("#functionName").value;
+function addQuestion() {
   var topic = document.querySelector("#topic").value;
   var difficulty = document.querySelector("#difficulty").value;
   var question = document.querySelector("#question").value;
 
-  if (question == "" || topic == "" || difficulty == "" || functionName == "") {
+  if (question == "" || topic == "" || difficulty == "") {
     alert("All input fields are required.");
   } else {
     var dataObj = {
-      function: functionName,
       topic: topic,
       difficulty: difficulty,
       question: question
     };
 
-    sendAjaxRequest(dataObj, "question.php");
+    console.log(dataObj);
+
+    var data = JSON.stringify(dataObj);
+
+    var request = new XMLHttpRequest();
+    request.onreadystatechange = function() {
+      if (this.readyState == 4 && this.status == 200) {
+        //var response = JSON.parse(this.responseText);
+        console.log(this.responseText);
+
+        getQuestionsCQ();
+      }
+    };
+
+    request.open("POST", "addQuestion.php", true);
+    request.send(data);
+  }
+}
+
+// get questions from the create exam page
+function getQuestions() {
+  var request = new XMLHttpRequest();
+  request.onreadystatechange = function() {
+    if (this.readyState == 4 && this.status == 200) {
+      var response = JSON.parse(this.responseText);
+      console.log(response);
+
+      var table = document.getElementById("questionTable");
+      var html = "";
+
+      // looping through the data response
+      for (var a = 0; a < response.length; a++) {
+        var topic = response[a].type;
+        var difficulty = response[a].difficulty;
+        var question = response[a].data;
+
+        // appending html
+        html += "<tr>";
+        html += "<td>" + question + "</td>";
+        html += "<td>" + topic + "</td>";
+        html += "<td>" + difficulty + "</td>";
+        html += "<td>";
+        html += "<input type='checkbox' class='checkBox'>";
+        html += "</td>";
+        html += "</tr>";
+      }
+
+      table.insertAdjacentHTML("beforeend", html);
+    }
+  };
+
+  request.open("POST", "getQuestions.php", true);
+  request.send(null);
+}
+
+// get questions from create question page
+function getQuestionsCQ() {
+  var request = new XMLHttpRequest();
+  request.onreadystatechange = function() {
+    if (this.readyState == 4 && this.status == 200) {
+      var response = JSON.parse(this.responseText);
+      console.log(response);
+
+      var table = document.getElementById("questionTableCQ");
+      var html = "";
+
+      // looping through the data response
+      for (var a = 0; a < response.length; a++) {
+        var id = response[a].id;
+        var topic = response[a].type;
+        var difficulty = response[a].difficulty;
+        var question = response[a].data;
+
+        // appending html
+        html += "<tr>";
+        html += "<td>" + question + "</td>";
+        html += "<td>" + topic + "</td>";
+        html += "<td>" + difficulty + "</td>";
+        html += "<td>";
+        html +=
+          "<input id='editBtn' type='button' value='Edit' onclick='editQuestion()'>";
+        html +=
+          "<input id='deleteBtn' type='button' value='Delete' onclick='deleteQuestion(" +
+          id +
+          "," +
+          a +
+          ")'>";
+        html += "</td>";
+        html += "</tr>";
+      }
+
+      table.insertAdjacentHTML("beforeend", html);
+    }
+  };
+
+  request.open("POST", "getQuestions.php", true);
+  request.send(null);
+}
+
+function deleteQuestion(questionId, index) {
+  if (confirm("Are you sure you want to delete this question?") == true) {
+    var dataObj = { id: questionId };
+
+    var data = JSON.stringify(dataObj);
+
+    var request = new XMLHttpRequest();
+    request.onreadystatechange = function() {
+      if (this.readyState == 4 && this.status == 200) {
+        var response = JSON.parse(this.responseText);
+        console.log(response);
+      }
+    };
+
+    request.open("POST", "deleteQuestion.php", true);
+    request.send(data);
   }
 }
 
 //edit a question
 function editQuestion() {
-  var functionName = document.querySelector("#modalFunctionName").value;
-  var topic = document.querySelector("#modalTopic").value;
+  var topic = document.querySelector("#modalTopic").v;
   var difficulty = document.querySelector("#modalDifficulty").value;
   var question = document.querySelector("#modalQuestion").value;
   var modal = document.getElementById("myModal");
@@ -40,16 +151,10 @@ function editQuestion() {
   };
 
   document.querySelector("#modalSaveBtn").addEventListener("click", function() {
-    if (
-      question == "" ||
-      topic == "" ||
-      difficulty == "" ||
-      functionName == ""
-    ) {
+    if (question == "" || topic == "" || difficulty == "") {
       console.log("SOmething is empty");
     } else {
-      var dataObj = {
-        function: functionName,
+      var sendDataToUpdate = {
         topic: topic,
         difficulty: difficulty,
         question: question
@@ -58,44 +163,24 @@ function editQuestion() {
   });
 }
 
-// delete a question
-function deleteQuestion() {
-  var x;
-  if (confirm("Are you sure you want to delete this question?") == true) {
-    x = "You pressed OK!";
-  } else {
-    x = "You pressed Cancel!";
-  }
-  return x;
-}
+// // Add question to the exam (not saved to the db yet)
+// function addQuestionToExam(questionId) {
+//   var addedQuestion = document.getElementById("examAddedQuestions");
+//   var html = "";
 
-// Add question to the exam (not saved to the db yet)
-function addQuestionToExam() {
-  var addedQuestion = document.getElementById("examAddedQuestions");
-  var addBtn = document.getElementById("addBtn");
-  var html = "";
-  var questionList = [];
+//   document.getElementById(questionId).disabled = true;
 
-  html +=
-    "<tr>" +
-    "<td>1</td>" +
-    "<td>Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa.</td>" +
-    "<td><input id='saveBtn' type='button' value='Delete' onclick='removeQuestionFromExam()'></td>" +
-    "</tr>";
+//   html += "<tr>";
+//   html += "<td>" + questionId + "</td>";
+//   html +=
+//     "<td><input id='saveBtn' type='button' value='Delete' onclick='removeQuestionFromExam()'></td>";
+//   html += "</tr>";
 
-  //addBtn.disabled = true;
-  addedQuestion.insertAdjacentHTML("beforeend", html);
+//   //addBtn.disabled = true;
+//   addedQuestion.insertAdjacentHTML("beforeend", html);
 
-  questionList.push(
-    "Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa."
-  );
-
-  var data = {
-    questions: questionList
-  };
-
-  sendAjaxRequest(data, "question.php");
-}
+//   return questionId;
+// }
 
 // create a new exam after clicking on save button (saved to the db)
 function createNewExam() {
@@ -108,18 +193,7 @@ function createNewExam() {
   }
 }
 
-function sendAjaxRequest(obj, file) {
-  var data = JSON.stringify(obj);
-
-  var request = new XMLHttpRequest();
-  request.onreadystatechange = function() {
-    if (this.readyState == 4 && this.status == 200) {
-      var response = JSON.parse(this.responseText);
-
-      console.log(response);
-    }
-  };
-
-  request.open("POST", file, true);
-  request.send(data);
-}
+window.addEventListener("load", function() {
+  getQuestions();
+  getQuestionsCQ();
+});

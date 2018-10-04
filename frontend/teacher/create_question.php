@@ -4,19 +4,17 @@
     <h1 align="center">Create Question</h1>
     <form>
         <div class="row">
-            <label for="country">Function Name</label>
-            <input type="text" id="functionName" name="firstname" placeholder="* Function name">
-            <label for="country">Topic</label>
+            <label for="topic">Topic</label>
             <select id="topic" >
                 <option value="">---</option>
                 <option value="general">general</option>
                 <option value="if">if</option>
-                <option value="loop">loops</option>
+                <option value="loop">loop</option>
                 <option value="array">array</option>
                 <option value="dictionaries">dictionaries</option>
             </select>
 
-            <label for="country">Difficulty</label>
+            <label for="difficulty">Difficulty</label>
             <select id="difficulty" >
                 <option value="">---</option>
                 <option value="easy">easy</option>
@@ -27,7 +25,7 @@
             <label for="question">Question</label>
             <textarea id="question" placeholder="* write question.. " style="height:200px"></textarea>
     
-            <input id="createBtn" type="button" value="Add Question" onclick="createQuestion()">
+            <input id="createBtn" type="button" value="Add Question" onclick="addQuestion();">
         </div>
     </form>
 </div>
@@ -41,10 +39,10 @@
         <div id="sortInputs">
             <label for="fname">Sort by:</label>
             <div id="searchSort">
-                <input id="filterTopicCQ" type="text" placeholder="topic" name="searchTopic" >
+                <input id="filterTopicCQ" type="text" placeholder="topic" name="searchTopic" onkeyup="filterTopicCQ()">
             </div>
             <div id="searchSort" style="padding-left: 5px">
-                <input id="filterDifficultyCQ" type="text" placeholder="difficulty" name="searchDifficulty">
+                <input id="filterDifficultyCQ" type="text" placeholder="difficulty" name="searchDifficulty" onkeyup="filterDifficultyCQ()">
                 </form>
             </div>
         </div>
@@ -65,27 +63,16 @@
     <div id="selectQuestionDiv">
         <table id="questionTableCQ">
             <tr>
-                <th>Question ID</th>
                 <th>Question</th>
-                <th>Function Name</th>
                 <th>Topic</th>
                 <th>Difficulty</th>
                 <th>Choose</th>
             </tr>
-            <tr>
-                <td>1</td>
-                <td>Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa.</td>
-                <td>funcName</td>
-                <td>if</td>
-                <td>medium</td>
-                <td>
-                    <input id="editBtn" type="button" value="Edit" onclick="editQuestion()">
-                    <input id="deleteBtn" type="button" value="Delete" onclick="deleteQuestion()">
-                </td>
-            </tr>
+            
            
         </table>
     </div> 
+
 
     <!-- The Modal -->
     <div id="myModal" class="modal">
@@ -95,8 +82,8 @@
         <span class="close">&times;</span>
         <form>
         <div class="row">
-            <label for="country">Function Name</label>
-            <input type="text" id="modalFunctionName" name="firstname" placeholder="* Function name">
+            <!-- <label for="country">Function Name</label>
+            <input type="text" id="modalFunctionName" name="firstname" placeholder="* Function name"> -->
             <label for="country">Topic</label>
             <select id="modalTopic" >
                 <option value="">---</option>
@@ -118,7 +105,7 @@
             <label for="question">Question</label>
             <textarea id="modalQuestion" placeholder="* write question.. " style="height:200px"></textarea>
     
-            <input id="modalSaveBtn" type="button" value="Add Question" onclick="createQuestion()">
+            <input id="modalSaveBtn" type="button" value="Add Question">
         </div>
         </form>
     </div>

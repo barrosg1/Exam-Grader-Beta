@@ -509,6 +509,10 @@ th {
   resize: none;
 }
 
+input[type="checkbox"] {
+  transform: scale(1.5);
+}
+
 @media only screen and (max-width: 600px) {
   /* For mobile phones: */
 
