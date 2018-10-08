@@ -5,8 +5,8 @@
     <div class="row">
         <label for="fname">Exam Name</label>
         <input type="text" id="examName" name="examName" placeholder="* Exam name">
-        <label for="fname">Total Points</label>
-        <input type="text" id="totalPoints" name="totalPoints" placeholder="* Total Points">
+        <!-- <label for="fname">Total Points</label>
+        <input type="text" id="totalPoints" name="totalPoints" placeholder="* Total Points"> -->
         
     </div>
   
@@ -30,13 +30,13 @@
 
     <div id="selectQuestionDiv">
         <center> 
-            <table id="questionTable">
+            <table id="questionTable" class="tableDisplay">
                 <tr>
+                    <th>Points</th>
                     <th>Question</th>
                     <th>Topic</th>
                     <th>Difficulty</th>
-                    <th>Choose</th>
-                    
+                   
                     <tbody id="dataExam"></tbody> <!-- Data will be displayed here -->
                 </tr>   
             </table>

@@ -50,7 +50,7 @@
     </div> 
 
     <div id="selectQuestionDiv">
-        <table id="questionTableCQ">
+        <table id="questionTableCQ" class="tableDisplay">
             <tr>
                 <th>Question</th>
                 <th>Topic</th>
@@ -78,7 +78,7 @@
                 <option value="">---</option>
                 <option value="general">general</option>
                 <option value="if">if</option>
-                <option value="loop">loops</option>
+                <option value="loop">loop</option>
                 <option value="array">array</option>
                 <option value="dictionaries">dictionaries</option>
             </select>
@@ -94,7 +94,7 @@
             <label for="question">Question</label>
             <textarea id="modalQuestion" placeholder="* write question.. " style="height:200px"></textarea>
     
-            <input id="modalSaveBtn" type="button" value="Add Question">
+            <input id="modalSaveBtn" type="button" value="Update">
         </div>
         </form>
     </div>

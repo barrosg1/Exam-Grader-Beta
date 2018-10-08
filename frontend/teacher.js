@@ -1,5 +1,5 @@
 // GLOBAL VARIABLES
-var SELECTED_QUESTIONS = [];
+var SELECTED_QUESTIONS = []; // store selected answers to add to the exam
 
 // create a new question
 function addQuestion() {
@@ -29,13 +29,13 @@ function addQuestion() {
       }
     };
 
-    request.open("POST", "addQuestion.php", true);
+    request.open("POST", "curl/addQuestion.php", true);
     request.send(data);
   }
 }
 
 // get questions from the create exam page
-function getQuestions() {
+function getQuestionsExam() {
   var request = new XMLHttpRequest();
   request.onreadystatechange = function() {
     if (this.readyState == 4 && this.status == 200) {
@@ -52,16 +52,26 @@ function getQuestions() {
 
         // appending html
         html += "<tr>";
+        html +=
+          "<td><input style='width:100%; height: 30px' type='number' id='points" +
+          a +
+          "' min='1' max='100' onchange='getPoints(" +
+          id +
+          "," +
+          "this)' /></td>";
         html += "<td>" + question + "</td>";
         html += "<td>" + topic + "</td>";
         html += "<td>" + difficulty + "</td>";
-        html += "<td>";
-        html +=
-          "<input type='checkbox' class='checkBox' onclick='checkedBox(" +
-          id +
-          "," +
-          "this)'>";
-        html += "</td>";
+        // html += "<td>";
+        // html +=
+        //   "<input type='checkbox' class='checkBox' onclick='checkedBox(" +
+        //   id +
+        //   "," +
+        //   "this" +
+        //   "," +
+        //   a +
+        //   ")'>";
+        // html += "</td>";
         html += "</tr>";
       }
 
@@ -69,14 +79,34 @@ function getQuestions() {
     }
   };
 
-  request.open("POST", "getQuestions.php", true);
+  request.open("POST", "curl/getQuestions.php", true);
   request.send(null);
 }
 
-function checkedBox(questionId, box) {
-  if (box.checked) {
-    SELECTED_QUESTIONS.push(questionId);
-  }
+// function checkedBox(questionId, box, index) {
+//   var pointsId = "points" + index;
+//   var points = document.getElementById(pointsId).value;
+//   if (box.checked) {
+//     if (points == "") {
+//       alert("You must enter points for this question.");
+//       box.checked = false;
+//     } else {
+//       var selected = {
+//         id: questionId,
+//         points: points
+//       };
+//       SELECTED_QUESTIONS.push(selected);
+//     }
+//   }
+// }
+
+function getPoints(questionId, p) {
+  var points = p.value;
+  var selected = {
+    id: questionId,
+    points: points
+  };
+  SELECTED_QUESTIONS.push(selected);
 }
 
 // get questions from create question page | CQ = create question
@@ -101,9 +131,11 @@ function getQuestionsCQ() {
         html += "<td>" + difficulty + "</td>";
         html += "<td>";
         html +=
-          "<input id='editBtn' style='float:left' type='button' value='Edit' onclick='editQuestion()'>";
+          "<input id='editBtn' class='editBtn' style='float:left' type='button' value='Edit' onclick='editQuestion(" +
+          id +
+          ")'>";
         html +=
-          "<input id='deleteBtn' style='float:left' type='button' value='Delete' onclick='deleteQuestion(" +
+          "<input id='deleteBtn' class='deleteBtn' style='float:left' type='button' value='Delete' onclick='deleteQuestion(" +
           id +
           "," +
           "this)'>";
@@ -115,7 +147,7 @@ function getQuestionsCQ() {
     }
   };
 
-  request.open("POST", "getQuestions.php", true);
+  request.open("POST", "curl/getQuestions.php", true);
   request.send(null);
 }
 
@@ -136,16 +168,13 @@ function deleteQuestion(questionId, row) {
       }
     };
 
-    request.open("POST", "deleteQuestion.php", true);
+    request.open("POST", "curl/deleteQuestion.php", true);
     request.send(data);
   }
 }
 
 //edit a question
-function editQuestion() {
-  var topic = document.querySelector("#modalTopic").value;
-  var difficulty = document.querySelector("#modalDifficulty").value;
-  var question = document.querySelector("#modalQuestion").value;
+function editQuestion(questionId) {
   var modal = document.getElementById("myModal");
   // Get the <span> element that closes the modal
   var span = document.getElementsByClassName("close")[0];
@@ -161,24 +190,40 @@ function editQuestion() {
   };
 
   document.querySelector("#modalSaveBtn").addEventListener("click", function() {
-    if (question == "" || topic == "" || difficulty == "") {
-      console.log("SOmething is empty");
-    } else {
-      var sendDataToUpdate = {
-        topic: topic,
-        difficulty: difficulty,
-        question: question
-      };
-    }
+    var topic = document.querySelector("#modalTopic").value;
+    var difficulty = document.querySelector("#modalDifficulty").value;
+    var question = document.querySelector("#modalQuestion").value;
+
+    var request = new XMLHttpRequest();
+    request.onreadystatechange = function() {
+      if (this.readyState == 4 && this.status == 200) {
+        var response = JSON.parse(this.responseText);
+
+        console.log(response);
+
+        getQuestionsCQ();
+      }
+    };
+
+    var dataObj = {
+      id: questionId,
+      topic: topic,
+      difficulty: difficulty,
+      question: question
+    };
+    var data = JSON.stringify(dataObj);
+
+    request.open("POST", "curl/editQuestion.php", true);
+    request.send(data);
   });
 }
 
 // create a new exam after clicking on save button (saved to the db)
 function createNewExam() {
   var examName = document.getElementById("examName").value;
-  var totalPoints = document.getElementById("totalPoints").value;
+  //var totalPoints = document.getElementById("totalPoints").value;
 
-  if (examName == "" || totalPoints == "") {
+  if (examName == "") {
     alert("Please input required fields.");
   } else {
     if (SELECTED_QUESTIONS.length == 0) {
@@ -186,7 +231,7 @@ function createNewExam() {
     } else {
       var dataObj = {
         examName: examName,
-        totalPoints: totalPoints,
+        //totalPoints: totalPoints,
         selectedQ: SELECTED_QUESTIONS
       };
 

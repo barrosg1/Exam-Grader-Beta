@@ -23,7 +23,7 @@
             </li>
             <li id="exam"><a href='./create_exam.php'><span>New Exam</span></a></li>
             <li id="viewExams"><a href='./view_exams.php'><span>View Exams</span></a></li>
-            <li id="grades"><a href='#'><span>grades</span></a></li>
+            <li id="grades"><a href='#'><span>Evaluate Exam</span></a></li>
             <li id="logout" style="float:right"><a href='#'><span>Logout</span></a></li>
         </ul>
 
