@@ -1,6 +1,6 @@
 <?php include("../layout/header.php"); ?>
 
-<div class="newExam">
+<div id="newExam" class="boxContainer">
     <h1 align="center">New Exam</h1>
     <div class="row">
         <label for="fname">Exam Name</label>
@@ -12,7 +12,7 @@
   
 </div>
 
-<div id="chooseQuestion">
+<div id="chooseQuestion" class="boxContainer">
     <h1 align="center">Choose Question</h1>
 
      <!-- sorting search -->
@@ -44,21 +44,5 @@
     </div> 
     <center><input id="examSaveBtn" type="button" value="Save" onclick="createNewExam()"></center>
 </div>
-
-<!-- <div id="allExamQuestions">
-    <h1 align="center">Added</h1>
-    <div class="addedQuestionTable">
-    <table id="examAddedQuestions">
-        <tr>
-            <th>Question ID</th>
-            <th></th>
-        </tr>
-    </table>
-    </div>
-    <div id="examSaveBtn" style="text-align: center;" class="row">
-        <p id="invalid_msg_modal"></p>
-        <input id="saveBtn" type="button" value="Save" onclick="createNewExam()">
-    </div>
-</div> -->
 
 <?php include("../layout/footer.php"); ?>

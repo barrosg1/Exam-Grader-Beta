@@ -63,7 +63,7 @@ body {
   line-height: 35px;
 }
 
-.addQuestion {
+.boxContainer {
   background: #e5e5e5;
   background: -moz-linear-gradient(top, #e5e5e5 0%, #dddddd 100%);
   background: -webkit-linear-gradient(top, #e5e5e5 0%, #dddddd 100%);
@@ -71,30 +71,23 @@ body {
   -moz-box-shadow: 0 2px 2px 1px rgba(0, 0, 0, 0.3);
   -webkit-box-shadow: 0 2px 2px 1px rgba(0, 0, 0, 0.3);
   margin: 10px;
+  margin-bottom: 40px;
   height: auto;
   width: 45%;
   padding: 10px;
   border-radius: 8px;
 }
 
-.addQuestion textarea {
+#addQuestion textarea {
   max-height: 400px;
   resize: none;
 }
 
-.addedQuestions {
-  background: #e5e5e5;
+#addedQuestions {
   margin: 10px;
   min-height: 300px;
   height: auto;
   width: 50%;
-  padding: 10px;
-  border-radius: 8px;
-  background: -moz-linear-gradient(top, #e5e5e5 0%, #dddddd 100%);
-  background: -webkit-linear-gradient(top, #e5e5e5 0%, #dddddd 100%);
-  box-shadow: 0 2px 2px 1px rgba(0, 0, 0, 0.3);
-  -moz-box-shadow: 0 2px 2px 1px rgba(0, 0, 0, 0.3);
-  -webkit-box-shadow: 0 2px 2px 1px rgba(0, 0, 0, 0.3);
 }
 
 .editBtn {
@@ -160,10 +153,6 @@ label {
 .row select {
   height: 45px !important;
   font-size: 10pt;
-}
-
-#difficulty {
-  height: 30px;
 }
 
 .search-container {
@@ -241,7 +230,7 @@ label {
 .tableDisplay {
   font-family: "Trebuchet MS", Arial, Helvetica, sans-serif;
   border-collapse: collapse;
-  width: 85%;
+  width: 100%;
 }
 
 .tableDisplay td,
@@ -266,47 +255,8 @@ label {
   color: white;
 }
 
-#examAddedQuestions {
-  font-family: "Trebuchet MS", Arial, Helvetica, sans-serif;
-  border-collapse: collapse;
-  width: 100%;
-}
-
-#examAddedQuestions td,
-examAddedQuestions,
-th {
-  border: 1px solid #ddd;
-  padding: 8px;
-}
-
-#examAddedQuestions tr:nth-child(even) {
-  background-color: #f2f2f2;
-}
-
-#examAddedQuestions tr:hover {
-  background-color: #ddd;
-}
-
-#examAddedQuestions th {
-  padding-top: 12px;
-  padding-bottom: 12px;
-  text-align: left;
-  background-color: #4caf50;
-  color: white;
-}
-
 #chooseQuestion {
-  background: #e5e5e5;
-  background: -moz-linear-gradient(top, #e5e5e5 0%, #dddddd 100%);
-  background: -webkit-linear-gradient(top, #e5e5e5 0%, #dddddd 100%);
-  box-shadow: 0 2px 2px 1px rgba(0, 0, 0, 0.3);
-  -moz-box-shadow: 0 2px 2px 1px rgba(0, 0, 0, 0.3);
-  -webkit-box-shadow: 0 2px 2px 1px rgba(0, 0, 0, 0.3);
-  margin: 10px;
-  height: 670px;
-  width: 90%;
-  padding: 10px;
-  border-radius: 8px;
+  width: 80%;
 }
 
 #selectQuestionDiv {
@@ -316,18 +266,8 @@ th {
   height: 430px;
 }
 
-.newExam {
-  background: #e5e5e5;
-  background: -moz-linear-gradient(top, #e5e5e5 0%, #dddddd 100%);
-  background: -webkit-linear-gradient(top, #e5e5e5 0%, #dddddd 100%);
-  box-shadow: 0 2px 2px 1px rgba(0, 0, 0, 0.3);
-  -moz-box-shadow: 0 2px 2px 1px rgba(0, 0, 0, 0.3);
-  -webkit-box-shadow: 0 2px 2px 1px rgba(0, 0, 0, 0.3);
-  margin: 10px;
-  height: auto;
+#newExam {
   width: 35%;
-  padding: 10px;
-  border-radius: 8px;
 }
 
 #examName,
@@ -351,20 +291,6 @@ th {
   background-color: rgb(146, 182, 255);
 }
 
-#allExamQuestions {
-  background: #e5e5e5;
-  background: -moz-linear-gradient(top, #e5e5e5 0%, #dddddd 100%);
-  background: -webkit-linear-gradient(top, #e5e5e5 0%, #dddddd 100%);
-  box-shadow: 0 2px 2px 1px rgba(0, 0, 0, 0.3);
-  -moz-box-shadow: 0 2px 2px 1px rgba(0, 0, 0, 0.3);
-  -webkit-box-shadow: 0 2px 2px 1px rgba(0, 0, 0, 0.3);
-  margin: 10px;
-  height: 550px;
-  width: 45%;
-  padding: 10px;
-  border-radius: 8px;
-}
-
 #sortQuestions {
   width: auto;
   height: 50px;
@@ -385,41 +311,18 @@ th {
   float: right;
 }
 
-.addedQuestionTable {
-  width: auto;
-  height: 390px;
-  overflow-y: scroll;
-  overflow-x: hidden;
-  margin-top: 10px;
+#examsTable {
+  width: 100%;
 }
 
-.viewExams {
-  background: #e5e5e5;
-  background: -moz-linear-gradient(top, #e5e5e5 0%, #dddddd 100%);
-  background: -webkit-linear-gradient(top, #e5e5e5 0%, #dddddd 100%);
-  box-shadow: 0 2px 2px 1px rgba(0, 0, 0, 0.3);
-  -moz-box-shadow: 0 2px 2px 1px rgba(0, 0, 0, 0.3);
-  -webkit-box-shadow: 0 2px 2px 1px rgba(0, 0, 0, 0.3);
+#viewExamsDiv {
   margin: 10px;
   height: 530px;
   width: 30%;
-  padding: 10px;
-  border-radius: 8px;
 }
 
 #takeExamDiv {
-  background: #e5e5e5;
-  background: -moz-linear-gradient(top, #e5e5e5 0%, #dddddd 100%);
-  background: -webkit-linear-gradient(top, #e5e5e5 0%, #dddddd 100%);
-  box-shadow: 0 2px 2px 1px rgba(0, 0, 0, 0.3);
-  -moz-box-shadow: 0 2px 2px 1px rgba(0, 0, 0, 0.3);
-  -webkit-box-shadow: 0 2px 2px 1px rgba(0, 0, 0, 0.3);
-  margin: 10px;
-  height: 640px;
   width: 80%;
-  padding: 10px;
-  border-radius: 8px;
-  overflow: scroll;
 }
 
 .takeExamQ {
@@ -429,7 +332,7 @@ th {
 
 #answerTextArea {
   width: 50%;
-  min-height: 300px;
+  min-height: 200px;
   margin-top: auto;
   margin-bottom: 12px;
   resize: none;
@@ -437,6 +340,18 @@ th {
 
 input[type="checkbox"] {
   transform: scale(1.5);
+}
+
+#evaluateExam {
+  width: 80%;
+  height: auto;
+  overflow: scroll;
+}
+
+#pointsGiven {
+  text-align: center;
+  width: 50%;
+  height: 30px;
 }
 
 .footer {

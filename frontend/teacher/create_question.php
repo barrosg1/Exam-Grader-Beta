@@ -1,6 +1,6 @@
 <?php include("../layout/header.php"); ?>
 
-<div class="addQuestion">
+<div id="addQuestion" class="boxContainer">
     <h1 align="center">Create Question</h1>
     <form>
         <div class="row">
@@ -32,7 +32,7 @@
 </div>
 
 <!-- Questions Display -->
-<div class="addedQuestions">
+<div id="addedQuestions" class="boxContainer">
     <h1 align="center">Added Questions</h1>
 
    <!-- sorting -->

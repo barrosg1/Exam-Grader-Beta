@@ -9,7 +9,7 @@ if(isset($response['difficulty'])) $difficulty = $response['difficulty'];
 if(isset($response['question'])) $question = $response['question'];    
 
 // API URL
-$url = "https://web.njit.edu/~vm348/quiz-grader/backend/upProblems.php";
+$url = "https://web.njit.edu/~hac9/quiz-grader/middle/editQuestion.php";
 
 $curl = curl_init($url);
 

@@ -1,7 +1,8 @@
 <?php
 
 // API URL
-    $url = "https://web.njit.edu/~vm348/quiz-grader/backend/getProblems.php"; 
+    //$url = "https://web.njit.edu/~vm348/quiz-grader/backend/getProblems.php"; 
+    $url = "https://web.njit.edu/~hac9/quiz-grader/middle/getQuestions.php";
 
     $curl = curl_init($url);
     

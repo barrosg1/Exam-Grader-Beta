@@ -1,6 +1,6 @@
 <?php include("../layout/header.php"); ?>
 
-    <div class="viewExams">
+    <div id="viewExamsDiv" class="boxContainer">
         <h1 align="center">Exams</h1>
         <div id="selectQuestionDiv">
         <table id="examsTable" class="tableDisplay">

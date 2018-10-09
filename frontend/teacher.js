@@ -21,10 +21,6 @@ function addQuestion() {
     var request = new XMLHttpRequest();
     request.onreadystatechange = function() {
       if (this.readyState == 4 && this.status == 200) {
-        //var response = JSON.parse(this.responseText);
-        //alert(response);
-        //console.log(this.responseText);
-
         getQuestionsCQ();
       }
     };
@@ -62,16 +58,6 @@ function getQuestionsExam() {
         html += "<td>" + question + "</td>";
         html += "<td>" + topic + "</td>";
         html += "<td>" + difficulty + "</td>";
-        // html += "<td>";
-        // html +=
-        //   "<input type='checkbox' class='checkBox' onclick='checkedBox(" +
-        //   id +
-        //   "," +
-        //   "this" +
-        //   "," +
-        //   a +
-        //   ")'>";
-        // html += "</td>";
         html += "</tr>";
       }
 
@@ -82,23 +68,6 @@ function getQuestionsExam() {
   request.open("POST", "curl/getQuestions.php", true);
   request.send(null);
 }
-
-// function checkedBox(questionId, box, index) {
-//   var pointsId = "points" + index;
-//   var points = document.getElementById(pointsId).value;
-//   if (box.checked) {
-//     if (points == "") {
-//       alert("You must enter points for this question.");
-//       box.checked = false;
-//     } else {
-//       var selected = {
-//         id: questionId,
-//         points: points
-//       };
-//       SELECTED_QUESTIONS.push(selected);
-//     }
-//   }
-// }
 
 function getPoints(questionId, p) {
   var points = p.value;
@@ -124,6 +93,15 @@ function getQuestionsCQ() {
         var difficulty = response[a].difficulty;
         var question = response[a].data;
 
+        var dataObj = {
+          id: id,
+          topic: topic,
+          difficulty: difficulty,
+          question: question
+        };
+
+        var data = JSON.stringify(dataObj);
+
         // appending html
         html += "<tr>";
         html += "<td>" + question + "</td>";
@@ -132,7 +110,7 @@ function getQuestionsCQ() {
         html += "<td>";
         html +=
           "<input id='editBtn' class='editBtn' style='float:left' type='button' value='Edit' onclick='editQuestion(" +
-          id +
+          data +
           ")'>";
         html +=
           "<input id='deleteBtn' class='deleteBtn' style='float:left' type='button' value='Delete' onclick='deleteQuestion(" +
@@ -174,7 +152,28 @@ function deleteQuestion(questionId, row) {
 }
 
 //edit a question
-function editQuestion(questionId) {
+function editQuestion(obj) {
+  var id = obj.id;
+  var topic = document.querySelector("#modalTopic");
+  var difficulty = document.querySelector("#modalDifficulty");
+  var question = document.querySelector("#modalQuestion");
+
+  topic.value = obj.topic;
+  difficulty.value = obj.difficulty;
+  question.value = obj.question;
+
+  topic.addEventListener("input", function(event) {
+    topic.value = this.value;
+  });
+
+  difficulty.addEventListener("input", function(event) {
+    difficulty.value = this.value;
+  });
+
+  question.addEventListener("input", function(event) {
+    question.value = this.value;
+  });
+
   var modal = document.getElementById("myModal");
   // Get the <span> element that closes the modal
   var span = document.getElementsByClassName("close")[0];
@@ -190,10 +189,6 @@ function editQuestion(questionId) {
   };
 
   document.querySelector("#modalSaveBtn").addEventListener("click", function() {
-    var topic = document.querySelector("#modalTopic").value;
-    var difficulty = document.querySelector("#modalDifficulty").value;
-    var question = document.querySelector("#modalQuestion").value;
-
     var request = new XMLHttpRequest();
     request.onreadystatechange = function() {
       if (this.readyState == 4 && this.status == 200) {
@@ -206,12 +201,13 @@ function editQuestion(questionId) {
     };
 
     var dataObj = {
-      id: questionId,
-      topic: topic,
-      difficulty: difficulty,
-      question: question
+      id: id,
+      topic: topic.value,
+      difficulty: difficulty.value,
+      question: question.value
     };
     var data = JSON.stringify(dataObj);
+    console.log(data);
 
     request.open("POST", "curl/editQuestion.php", true);
     request.send(data);
@@ -239,4 +235,30 @@ function createNewExam() {
       console.log(JSON.stringify(dataObj));
     }
   }
+}
+
+function testPython() {
+  var answer = document.getElementById("answer").value;
+
+  var request = new XMLHttpRequest();
+  request.onreadystatechange = function() {
+    if (this.readyState == 4 && this.status == 200) {
+      var response = JSON.parse(this.responseText);
+      console.log(response);
+    }
+  };
+  var dataObj = {
+    answer: answer
+  };
+
+  var data = JSON.stringify(dataObj);
+
+  request.open(
+    "POST",
+    "https://web.njit.edu/~hac9/quiz-grader/middle/middle.php",
+    true
+  );
+  request.send(data);
+
+  alert("Sent");
 }

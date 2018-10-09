@@ -7,7 +7,7 @@
 	if(isset($response['id'])) $id = $response['id']; 
     
     // API URL
-    $url = "https://web.njit.edu/~vm348/quiz-grader/backend/delProblems.php";
+    $url = "https://web.njit.edu/~hac9/quiz-grader/middle/deleteQuestion.php";
 
     $curl = curl_init($url);
     

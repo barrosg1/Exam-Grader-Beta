@@ -21,9 +21,10 @@
         <ul>
             <li id="create"><a href='./create_question.php'><span>Question</span></a>
             </li>
-            <li id="exam"><a href='./create_exam.php'><span>New Exam</span></a></li>
-            <li id="viewExams"><a href='./view_exams.php'><span>View Exams</span></a></li>
-            <li id="grades"><a href='#'><span>Evaluate Exam</span></a></li>
+            <li ><a href='./create_exam.php'><span>New Exam</span></a></li>
+            <li ><a href='./view_exams.php'><span>View Exams</span></a></li>
+            <li ><a href='./evaluate_exam.php'><span>Evaluate Exam</span></a></li>
+            <li ><a href='./testing.php'><span>Testing</span></a></li>
             <li id="logout" style="float:right"><a href='#'><span>Logout</span></a></li>
         </ul>
 
