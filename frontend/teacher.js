@@ -46,6 +46,14 @@ function getQuestionsExam() {
         var difficulty = response[a].difficulty;
         var question = response[a].data;
 
+        var dataObj = {
+          id: id,
+          question: question
+        };
+
+        var data = JSON.stringify(dataObj);
+        getExamQuestions(data);
+
         // appending html
         html += "<tr>";
         html +=
@@ -71,11 +79,21 @@ function getQuestionsExam() {
 
 function getPoints(questionId, p) {
   var points = p.value;
-  var selected = {
-    id: questionId,
-    points: points
+
+  if (points != "") {
+    var selected = {
+      id: questionId,
+      points: points
+    };
+    SELECTED_QUESTIONS.push(selected);
+  }
+}
+
+function getExamQuestions(object) {
+  return {
+    id: object.id,
+    question: object.question
   };
-  SELECTED_QUESTIONS.push(selected);
 }
 
 // get questions from create question page | CQ = create question
@@ -108,10 +126,10 @@ function getQuestionsCQ() {
         html += "<td>" + topic + "</td>";
         html += "<td>" + difficulty + "</td>";
         html += "<td>";
-        html +=
-          "<input id='editBtn' class='editBtn' style='float:left' type='button' value='Edit' onclick='editQuestion(" +
-          data +
-          ")'>";
+        // html +=
+        //   "<input id='editBtn' class='editBtn' style='float:left' type='button' value='Edit' onclick='editQuestion(" +
+        //   data +
+        //   ")'>";
         html +=
           "<input id='deleteBtn' class='deleteBtn' style='float:left' type='button' value='Delete' onclick='deleteQuestion(" +
           id +
@@ -151,90 +169,116 @@ function deleteQuestion(questionId, row) {
   }
 }
 
-//edit a question
-function editQuestion(obj) {
-  var id = obj.id;
-  var topic = document.querySelector("#modalTopic");
-  var difficulty = document.querySelector("#modalDifficulty");
-  var question = document.querySelector("#modalQuestion");
-
-  topic.value = obj.topic;
-  difficulty.value = obj.difficulty;
-  question.value = obj.question;
-
-  topic.addEventListener("input", function(event) {
-    topic.value = this.value;
-  });
-
-  difficulty.addEventListener("input", function(event) {
-    difficulty.value = this.value;
-  });
-
-  question.addEventListener("input", function(event) {
-    question.value = this.value;
-  });
-
-  var modal = document.getElementById("myModal");
-  // Get the <span> element that closes the modal
-  var span = document.getElementsByClassName("close")[0];
-  // When the user clicks the button, open the modal
-  modal.style.display = "block";
-  span.onclick = function() {
-    modal.style.display = "none";
-  };
-  window.onclick = function(event) {
-    if (event.target == modal) {
-      modal.style.display = "none";
-    }
-  };
-
-  document.querySelector("#modalSaveBtn").addEventListener("click", function() {
-    var request = new XMLHttpRequest();
-    request.onreadystatechange = function() {
-      if (this.readyState == 4 && this.status == 200) {
-        var response = JSON.parse(this.responseText);
-
-        console.log(response);
-
-        getQuestionsCQ();
-      }
-    };
-
-    var dataObj = {
-      id: id,
-      topic: topic.value,
-      difficulty: difficulty.value,
-      question: question.value
-    };
-    var data = JSON.stringify(dataObj);
-    console.log(data);
-
-    request.open("POST", "curl/editQuestion.php", true);
-    request.send(data);
-  });
-}
-
 // create a new exam after clicking on save button (saved to the db)
 function createNewExam() {
   var examName = document.getElementById("examName").value;
   //var totalPoints = document.getElementById("totalPoints").value;
 
   if (examName == "") {
-    alert("Please input required fields.");
+    alert("Exam name is required.");
   } else {
     if (SELECTED_QUESTIONS.length == 0) {
       alert("You must select at least one question");
     } else {
+      var request = new XMLHttpRequest();
+      request.onreadystatechange = function() {
+        if (this.readyState == 4 && this.status == 200) {
+          var response = JSON.parse(this.responseText);
+          console.log(response);
+        }
+      };
+
       var dataObj = {
         examName: examName,
-        //totalPoints: totalPoints,
         selectedQ: SELECTED_QUESTIONS
       };
 
-      //window.location.replace("view_exams.php");
-      console.log(JSON.stringify(dataObj));
+      var data = JSON.stringify(dataObj);
+
+      request.open("POST", "curl/addExam.php", true);
+      request.send(data);
+
+      window.location.replace("view_exams.php");
     }
   }
+}
+
+function getAllExams() {
+  var request = new XMLHttpRequest();
+  var html = "";
+
+  request.onreadystatechange = function() {
+    if (this.readyState == 4 && this.status == 200) {
+      var response = JSON.parse(this.responseText);
+
+      // looping through the data response
+      for (var a = 0; a < response.length; a++) {
+        var id = response[a].id;
+        var examName = response[a].name;
+        var points = response[a].points;
+        var pointsArray = points.split(",");
+        var questionsArray = [];
+
+        for (var i = 0; i < pointsArray.length; i++) {
+          var question = response[a][i];
+          questionsArray.push(question);
+        }
+
+        var dataObj = {
+          id: id,
+          questions: questionsArray,
+          points: pointsArray
+        };
+
+        var data = JSON.stringify(dataObj);
+
+        // appending html
+        html += "<tr style='text-align:center'>";
+        html +=
+          "<td onclick='displayExamQuestions(" +
+          data +
+          ")'>" +
+          examName +
+          "</td>";
+        html += "</tr>";
+      }
+
+      document.getElementById("examsDisplay").innerHTML = html;
+    }
+  };
+
+  request.open("POST", "curl/getExams.php", true);
+  request.send(null);
+}
+
+function displayExamQuestions(object) {
+  var questions = object.questions;
+  var points = object.points;
+
+  var html = "";
+
+  for (var i = 0; i < points.length; i++) {
+    html += "<tr>";
+    html += "<td>" + questions[i] + "</td>";
+    html += "<td>" + points[i] + "</td>";
+    html += "</tr>";
+  }
+
+  document.getElementById("displayQuestionsExam").innerHTML = html;
+}
+
+function getQuestion(questionId) {
+  var request = new XMLHttpRequest();
+  request.onreadystatechange = function() {
+    if (this.readyState == 4 && this.status == 200) {
+      var responseQuestion = JSON.parse(this.responseText);
+    }
+  };
+
+  var data = JSON.stringify({ id: questionId });
+
+  request.open("POST", "curl/getQuestion.php", true);
+  request.send(data);
 }
 
 function testPython() {
@@ -244,7 +288,9 @@ function testPython() {
   request.onreadystatechange = function() {
     if (this.readyState == 4 && this.status == 200) {
       var response = JSON.parse(this.responseText);
-      console.log(response);
+      // console.log(response);
+
+      getQuestion();
     }
   };
   var dataObj = {

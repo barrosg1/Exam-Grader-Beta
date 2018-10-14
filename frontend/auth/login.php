@@ -21,7 +21,7 @@
                     <h1>Login</h1>
 
                     <label for="username"><b>UCID</b></label>
-                    <input type="text" placeholder="Enter UCID" maxlength="6" name="username" id="username" />
+                    <input type="text" placeholder="Enter UCID" name="username" id="username" />
                     <p id="errorUsername" class="errorMessage"></p>
 
                     <label for="password"><b>Password</b></label>

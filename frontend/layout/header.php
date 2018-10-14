@@ -1,3 +1,14 @@
+<?php
+ 
+    // session_start();
+    
+    // if (!isset($_SESSION['id']) || !isset($_SESSION['instructor'])) {
+    //     header('Location: ../auth/login.php');
+    // }
+    
+?>
+
+
 <!doctype html>
 <html lang=''>
 
@@ -12,6 +23,7 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 
     <script src="../teacher.js"></script>
+    <script src="../student.js"></script>
     <script src="../utils.js"></script>
     
 </head>
@@ -19,13 +31,17 @@
 <body>
     <div id='cssmenu'>
         <ul>
-            <li id="create"><a href='./create_question.php'><span>Question</span></a>
-            </li>
-            <li ><a href='./create_exam.php'><span>New Exam</span></a></li>
-            <li ><a href='./view_exams.php'><span>View Exams</span></a></li>
-            <li ><a href='./evaluate_exam.php'><span>Evaluate Exam</span></a></li>
-            <li ><a href='./testing.php'><span>Testing</span></a></li>
-            <li id="logout" style="float:right"><a href='#'><span>Logout</span></a></li>
+                <li id="create"><a href='./create_question.php'><span>Question</span></a>
+                </li>
+                <li ><a href='./create_exam.php'><span>New Exam</span></a></li>
+                <li ><a href='./view_exams.php'><span>View Exams</span></a></li>
+                <li ><a href='./evaluate_exam.php'><span>Evaluate Exam</span></a></li>
+                <li ><a href='./testing.php'><span>Testing</span></a></li>
+
+                <li ><a href='./all_exams.php'><span>Exams</span></a></li>
+                <li ><a href='./view_exam.php'><span>View Exam</span></a></li>
+           
+            <li id="logout" style="float:right"><a href='../auth/login.php'><span>Logout</span></a></li>
         </ul>
 
     </div>

@@ -1,20 +1,25 @@
 <?php
+    error_reporting(E_ALL);
+    ini_set('display_errors', TRUE);
 
     $str_json = file_get_contents('php://input'); // retrieve JSON content
     $response = json_decode($str_json, true); // decoding received JSON to array
     
+    $username="none";$password="none"; 
+
     // if inputs are set then assign each input value to variables
-	if(isset($response['examName'])) $examName = $response['examName'];
-    if(isset($response['selectedQ'])) $selectedQ = $response['selectedQ'];  
+	if(isset($response['username'])) $username = $response['username'];
+	if(isset($response['password'])) $password = $response['password'];
     
     // API URL
-    $url = "https://web.njit.edu/~vm348/quiz-grader/backend/addExams.php";
+    $url = "https://web.njit.edu/~vm348/quiz-grader/backend/login.php"; 
+    //$url = "https://web.njit.edu/~hac9/quiz-grader/middle/middle.php"; 
 
     $curl = curl_init($url);
     
     // setup request to send JSON string to the POST fields
-    $data = array('examName' => $examName,'selectedQ' => $selectedQ);
-    $payload = json_encode(array('exam' => $data));
+    $data = array('username' => $username,'password' => $password);
+    $payload = json_encode(array("user" => $data));
     
     // attach encoded JSON string to the POST fields
     curl_setopt($curl, CURLOPT_POSTFIELDS, $payload);
@@ -26,11 +31,18 @@
 	curl_setopt($curl, CURLOPT_RETURNTRANSFER, true);
     
     // execute the POST request
-    $response = curl_exec($curl);
+    $res = curl_exec($curl);
     
     // close cURL resource
     curl_close($curl);
+
+    $auth = json_decode($res, true);
     
-    echo $response;
-    
+    $_SESSION['id'] = $auth['id'];
+    $_SESSION['instructor'] = $auth['instructor'];
+
+    $output = json_encode($_SESSION['id']);
+
+    echo $output;
+    	   
 ?>

@@ -6,17 +6,23 @@
         <table id="examsTable" class="tableDisplay">
             <tr>
                 <th>Exam Name</th>
-                <th></th>
             </tr>
 
-            <tbody id="examsDisplay"></tbody> <!-- Data will be displayed here -->
+            <tbody id="examsDisplay"></tbody> <!-- Data will be displayed here -->         
+        </table>
+    </div>
+    </div>
+
+     <div id="viewExamsDiv" class="boxContainer">
+        <h1 align="center">Questions</h1>
+        <div id="selectQuestionDiv">
+        <table id="examsTable" class="tableDisplay">
             <tr>
-                <td>Exam1</td>
-                <td>
-                    <input id="editBtn"  class="editBtn" type="button" value="delete">
-                    <input id="deleteBtn" class="deleteBtn" type="button" value="edit">
-                </td>
-            </tr>           
+                <th>Questions</th>
+                <th>Points</th>
+            </tr>
+
+            <tbody id="displayQuestionsExam"></tbody> <!-- Data will be displayed here -->         
         </table>
     </div>
     </div>

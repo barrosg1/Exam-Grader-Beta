@@ -316,7 +316,7 @@ label {
 }
 
 #viewExamsDiv {
-  margin: 10px;
+  margin: 20px;
   height: 530px;
   width: 30%;
 }
@@ -330,7 +330,7 @@ label {
   height: auto;
 }
 
-#answerTextArea {
+.answerTextArea {
   width: 50%;
   min-height: 200px;
   margin-top: auto;
