@@ -5,8 +5,6 @@ request.onreadystatechange = function() {
   if (this.readyState == 4 && this.status == 200) {
     var response = JSON.parse(this.responseText);
 
-    console.log(response);
-
     // looping through the data response
     for (var a = 0; a < response.length; a++) {
       var id = response[a].id;
@@ -24,6 +22,7 @@ request.onreadystatechange = function() {
 
       var dataObj = {
         id: id,
+        examName: examName,
         questionsId: selectedQArray,
         questions: questionsArray,
         points: pointsArray

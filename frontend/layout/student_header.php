@@ -15,6 +15,7 @@
     <script src="../js/student.js"></script>
     <script src="../js/utils.js"></script>
     <script src="../js/getAllExamsStudent.js"></script>
+    <script src="../js/getAllStudents.js"></script>
 
     <script>
       if(localStorage.getItem("id") === null || localStorage.getItem("instructor") === null) {
@@ -29,7 +30,7 @@
     <div id='cssmenu'>
         <ul>
 
-            <li ><a href='./all_exams.php'><span>Exams</span></a></li>
+            <li ><a href='./all_exams.php'><span>Take Exam</span></a></li>
             <li ><a href='./view_exam.php'><span>View Exam</span></a></li>
             <li ><a href='./testing.php'><span>Testing</span></a></li>
            

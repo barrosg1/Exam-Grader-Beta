@@ -45,13 +45,18 @@ function sendAjaxData(uname, psw) {
       var user = data.instructor;
       var id = data.id;
 
-      localStorage.setItem("instructor", user);
-      localStorage.setItem("id", id);
+      if (!user || !id) {
+        console.log(data);
+      } else {
+        localStorage.setItem("instructor", user);
+        localStorage.setItem("id", id);
 
-      if (user == "1")
-        window.location.replace("../teacher/create_question.php");
-      else if (user == "0") window.location.replace("../student/all_exams.php");
-      else window.location.replace("../auth/login.php");
+        if (user == "1")
+          window.location.replace("../teacher/create_question.php");
+        else if (user == "0")
+          window.location.replace("../student/all_exams.php");
+        else window.location.replace("../auth/login.php");
+      }
     }
   };
 

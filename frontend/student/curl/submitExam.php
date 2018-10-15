@@ -9,7 +9,8 @@
     if(isset($response['studentId'])) $studentId = $response['studentId']; 
     
     // API URL
-    $url = "https://web.njit.edu/~vm348/quiz-grader/backend/addUserExam.php";
+    //$url = "https://web.njit.edu/~vm348/quiz-grader/backend/addUserExam.php";
+    $url = "https://web.njit.edu/~hac9/quiz-grader/middle/submitExam.php";
 
     $curl = curl_init($url);
     

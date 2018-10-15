@@ -9,8 +9,8 @@
 	if(isset($response['password'])) $password = $response['password'];
     
     // API URL
-    $url = "https://web.njit.edu/~vm348/quiz-grader/backend/login.php"; 
-    //$url = "https://web.njit.edu/~hac9/quiz-grader/middle/middle.php"; 
+    //$url = "https://web.njit.edu/~vm348/quiz-grader/backend/login.php"; 
+    $url = "https://web.njit.edu/~hac9/quiz-grader/middle/login.php"; 
 
     $curl = curl_init($url);
     
@@ -33,14 +33,6 @@
     // close cURL resource
     curl_close($curl);
 
-    // $auth = json_decode($res, true);
-    
-    // $_SESSION['id'] = $auth['id'];
-    // $_SESSION['instructor'] = $auth['instructor'];
-
-    // $output = json_encode($_SESSION['instructor']); 
-
-    // echo $output;
     echo $res;
     	   
 ?>

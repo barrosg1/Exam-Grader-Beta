@@ -143,3 +143,22 @@ function filterDifficultyCQ() {
 //   //getAllExams();
 //   getAllExamsStudent();
 // });
+
+var data = {
+  examId: "12",
+  studentId: "2",
+  questions: [
+    {
+      questionId: 12,
+      points: 25,
+      answer: "hello world",
+      expectedOutput: "hello world"
+    },
+    {
+      questionId: 5,
+      points: 10,
+      answer: "35",
+      expectedOutput: "25"
+    }
+  ]
+};
