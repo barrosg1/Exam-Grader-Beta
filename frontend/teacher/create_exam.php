@@ -45,4 +45,3 @@
     <center><input id="examSaveBtn" type="button" value="Save" onclick="createNewExam()"></center>
 </div>
 
-<?php include("../layout/footer.php"); ?>

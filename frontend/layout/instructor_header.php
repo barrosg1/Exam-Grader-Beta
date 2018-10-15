@@ -11,12 +11,12 @@
 
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 
-    <script src="../teacher.js"></script>
-    <script src="../utils.js"></script>
     <script src="../auth/logout.js"></script>
-    <script src="../getAllExams.js"></script>
-    <script src="../getQuestionsCQ.js"></script>
-    <script src="../getQuestionsExam.js"></script>
+    <script src="../js/teacher.js"></script>
+    <script src="../js/utils.js"></script>
+    <script src="../js/getAllExams.js"></script>
+    <script src="../js/getQuestionsCQ.js"></script>
+    <script src="../js/getQuestionsExam.js"></script>
 
     <script>
       if(localStorage.getItem("id") === null || localStorage.getItem("instructor") === null) {

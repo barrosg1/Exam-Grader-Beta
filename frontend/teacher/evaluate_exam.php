@@ -69,4 +69,3 @@ Correct output: olleh	====> -18
 </div>
 
 
-<?php include("../layout/footer.php"); ?>

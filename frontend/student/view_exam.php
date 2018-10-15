@@ -31,4 +31,3 @@ Correct output: olleh	====> -18
     </div>    
 </div>
 
-<?php include("../layout/footer.php"); ?>
