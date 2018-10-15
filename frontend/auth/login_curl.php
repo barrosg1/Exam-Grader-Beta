@@ -1,7 +1,4 @@
 <?php
-    error_reporting(E_ALL);
-    ini_set('display_errors', TRUE);
-
     $str_json = file_get_contents('php://input'); // retrieve JSON content
     $response = json_decode($str_json, true); // decoding received JSON to array
     
@@ -36,13 +33,14 @@
     // close cURL resource
     curl_close($curl);
 
-    $auth = json_decode($res, true);
+    // $auth = json_decode($res, true);
     
-    $_SESSION['id'] = $auth['id'];
-    $_SESSION['instructor'] = $auth['instructor'];
+    // $_SESSION['id'] = $auth['id'];
+    // $_SESSION['instructor'] = $auth['instructor'];
 
-    $output = json_encode($_SESSION['id']);
+    // $output = json_encode($_SESSION['instructor']); 
 
-    echo $output;
+    // echo $output;
+    echo $res;
     	   
 ?>

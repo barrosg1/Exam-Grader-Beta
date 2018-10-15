@@ -1,4 +1,4 @@
-<?php include("../layout/header.php"); ?>
+<?php include("../layout/instructor_header.php"); ?>
 
 <div id="newExam" class="boxContainer">
     <h1 align="center">New Exam</h1>

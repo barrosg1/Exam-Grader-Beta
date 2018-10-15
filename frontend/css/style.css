@@ -313,6 +313,7 @@ label {
 
 #examsTable {
   width: 100%;
+  cursor: pointer;
 }
 
 #viewExamsDiv {

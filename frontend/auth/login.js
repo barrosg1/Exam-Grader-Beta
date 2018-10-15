@@ -42,11 +42,16 @@ function sendAjaxData(uname, psw) {
     if (xhr.readyState == 4 && xhr.status == 200) {
       var data = JSON.parse(this.responseText);
 
-      // document.querySelector("#showMessage").style.display = "block";
-      // document.querySelector("#showMessage").innerHTML =
-      //   "<p id='displayMessage'>" + data + "</p>";
+      var user = data.instructor;
+      var id = data.id;
 
-      console.log(data);
+      localStorage.setItem("instructor", user);
+      localStorage.setItem("id", id);
+
+      if (user == "1")
+        window.location.replace("../teacher/create_question.php");
+      else if (user == "0") window.location.replace("../student/all_exams.php");
+      else window.location.replace("../auth/login.php");
     }
   };
 

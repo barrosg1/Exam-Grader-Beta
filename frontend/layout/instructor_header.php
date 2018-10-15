@@ -1,14 +1,3 @@
-<?php
- 
-    // session_start();
-    
-    // if (!isset($_SESSION['id']) || !isset($_SESSION['instructor'])) {
-    //     header('Location: ../auth/login.php');
-    // }
-    
-?>
-
-
 <!doctype html>
 <html lang=''>
 
@@ -23,8 +12,18 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 
     <script src="../teacher.js"></script>
-    <script src="../student.js"></script>
     <script src="../utils.js"></script>
+    <script src="../auth/logout.js"></script>
+    <script src="../getAllExams.js"></script>
+    <script src="../getQuestionsCQ.js"></script>
+    <script src="../getQuestionsExam.js"></script>
+
+    <script>
+      if(localStorage.getItem("id") === null || localStorage.getItem("instructor") === null) {
+          window.location.replace('../auth/login.php');
+      }
+
+    </script>
     
 </head>
 
@@ -36,12 +35,8 @@
                 <li ><a href='./create_exam.php'><span>New Exam</span></a></li>
                 <li ><a href='./view_exams.php'><span>View Exams</span></a></li>
                 <li ><a href='./evaluate_exam.php'><span>Evaluate Exam</span></a></li>
-                <li ><a href='./testing.php'><span>Testing</span></a></li>
-
-                <li ><a href='./all_exams.php'><span>Exams</span></a></li>
-                <li ><a href='./view_exam.php'><span>View Exam</span></a></li>
            
-            <li id="logout" style="float:right"><a href='../auth/login.php'><span>Logout</span></a></li>
+            <li id="logout" style="float:right" onclick="logout()"><a href='#'><span>Logout</span></a></li>
         </ul>
 
     </div>

@@ -137,9 +137,9 @@ function filterDifficultyCQ() {
 //   });
 // }
 
-window.addEventListener("load", function() {
-  //getQuestionsExam();
-  //getQuestionsCQ();
-  //getAllExams();
-  getAllExamsStudent();
-});
+// window.addEventListener("load", function() {
+//   //getQuestionsExam();
+//   //getQuestionsCQ();
+//   //getAllExams();
+//   getAllExamsStudent();
+// });

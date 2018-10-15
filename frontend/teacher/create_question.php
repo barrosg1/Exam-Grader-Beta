@@ -1,4 +1,4 @@
-<?php include("../layout/header.php"); ?>
+<?php include("../layout/instructor_header.php"); ?>
 
 <div id="addQuestion" class="boxContainer">
     <h1 align="center">Create Question</h1>

@@ -1,4 +1,4 @@
-<?php include("../layout/header.php"); ?>
+<?php include("../layout/student_header.php"); ?>
 
 <div id="addQuestion" class="boxContainer">
     <h1 align="center">Test Python</h1>

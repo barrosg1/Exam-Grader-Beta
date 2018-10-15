@@ -99,21 +99,31 @@ function takeExam(object) {
 
 function submitExam(object) {
   var examId = object.examId;
-  var questionIds = object.questionIdArray;
+  var studentId = localStorage.getItem("id");
 
   var answerArray = [];
 
-  for (var i = 0; i < questionIds.length; i++) {
-    var questionId = questionIds[i];
-    var answer = document.getElementById(questionIds[i]).value;
+  for (var i = 0; i < object.questionIdArray.length; i++) {
+    var answer = document.getElementById(object.questionIdArray[i]).value;
 
-    answerArray[i] = { questionId: questionId, answer: answer };
+    answerArray[i] = { answer: answer };
   }
 
   var data = {
     examId: examId,
+    studentId: studentId,
     answers: answerArray
   };
 
-  console.log(data);
+  var request = new XMLHttpRequest();
+  request.onreadystatechange = function() {
+    if (this.readyState == 4 && this.status == 200) {
+      var response = JSON.parse(this.responseText);
+
+      console.log(response);
+    }
+  };
+
+  request.open("POST", "curl/submitExam.php", true);
+  request.send(data);
 }

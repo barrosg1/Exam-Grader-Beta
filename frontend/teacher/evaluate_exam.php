@@ -1,4 +1,4 @@
-<?php include("../layout/header.php"); ?>
+<?php include("../layout/instructor_header.php"); ?>
 
 
 <div id="evaluateExam" class="boxContainer">
