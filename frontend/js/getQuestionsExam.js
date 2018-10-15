@@ -12,14 +12,6 @@ request.onreadystatechange = function() {
       var difficulty = response[a].difficulty;
       var question = response[a].data;
 
-      var dataObj = {
-        id: id,
-        question: question
-      };
-
-      var data = JSON.stringify(dataObj);
-      getExamQuestions(data);
-
       // appending html
       html += "<tr>";
       html +=

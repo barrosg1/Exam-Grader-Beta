@@ -11,15 +11,6 @@ request.onreadystatechange = function() {
       var difficulty = response[a].difficulty;
       var question = response[a].data;
 
-      var dataObj = {
-        id: id,
-        topic: topic,
-        difficulty: difficulty,
-        question: question
-      };
-
-      var data = JSON.stringify(dataObj);
-
       // appending html
       html += "<tr>";
       html += "<td>" + question + "</td>";

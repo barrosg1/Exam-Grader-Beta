@@ -11,7 +11,7 @@
 
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 
-    <script src="../auth/logout.js"></script>
+    <script src="../js/logout.js"></script>
     <script src="../js/teacher.js"></script>
     <script src="../js/utils.js"></script>
     <script src="../js/getAllExams.js"></script>

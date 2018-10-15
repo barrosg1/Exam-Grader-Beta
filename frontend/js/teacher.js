@@ -30,53 +30,6 @@ function addQuestion() {
   }
 }
 
-// get questions from the create exam page
-function getQuestionsExam() {
-  var request = new XMLHttpRequest();
-  request.onreadystatechange = function() {
-    if (this.readyState == 4 && this.status == 200) {
-      var response = JSON.parse(this.responseText);
-
-      var html = "";
-
-      // looping through the data response
-      for (var a = 0; a < response.length; a++) {
-        var id = response[a].id;
-        var topic = response[a].type;
-        var difficulty = response[a].difficulty;
-        var question = response[a].data;
-
-        var dataObj = {
-          id: id,
-          question: question
-        };
-
-        var data = JSON.stringify(dataObj);
-        getExamQuestions(data);
-
-        // appending html
-        html += "<tr>";
-        html +=
-          "<td><input style='width:100%; height: 30px' type='number' id='points" +
-          a +
-          "' min='1' max='100' onchange='getPoints(" +
-          id +
-          "," +
-          "this)' /></td>";
-        html += "<td>" + question + "</td>";
-        html += "<td>" + topic + "</td>";
-        html += "<td>" + difficulty + "</td>";
-        html += "</tr>";
-      }
-
-      document.getElementById("dataExam").innerHTML = html;
-    }
-  };
-
-  request.open("POST", "curl/getQuestions.php", true);
-  request.send(null);
-}
-
 function getPoints(questionId, p) {
   var points = p.value;
 
@@ -87,64 +40,6 @@ function getPoints(questionId, p) {
     };
     SELECTED_QUESTIONS.push(selected);
   }
-}
-
-function getExamQuestions(object) {
-  return {
-    id: object.id,
-    question: object.question
-  };
-}
-
-// get questions from create question page | CQ = create question
-function getQuestionsCQ() {
-  var request = new XMLHttpRequest();
-  request.onreadystatechange = function() {
-    if (this.readyState == 4 && this.status == 200) {
-      var response = JSON.parse(this.responseText);
-      var html = "";
-
-      // looping through the data response
-      for (var a = 0; a < response.length; a++) {
-        var id = response[a].id;
-        var topic = response[a].type;
-        var difficulty = response[a].difficulty;
-        var question = response[a].data;
-
-        var dataObj = {
-          id: id,
-          topic: topic,
-          difficulty: difficulty,
-          question: question
-        };
-
-        var data = JSON.stringify(dataObj);
-
-        // appending html
-        html += "<tr>";
-        html += "<td>" + question + "</td>";
-        html += "<td>" + topic + "</td>";
-        html += "<td>" + difficulty + "</td>";
-        html += "<td>";
-        // html +=
-        //   "<input id='editBtn' class='editBtn' style='float:left' type='button' value='Edit' onclick='editQuestion(" +
-        //   data +
-        //   ")'>";
-        html +=
-          "<input id='deleteBtn' class='deleteBtn' style='float:left' type='button' value='Delete' onclick='deleteQuestion(" +
-          id +
-          "," +
-          "this)'>";
-        html += "</td>";
-        html += "</tr>";
-      }
-
-      document.getElementById("dataCQ").innerHTML = html;
-    }
-  };
-
-  request.open("POST", "curl/getQuestions.php", true);
-  request.send(null);
 }
 
 function deleteQuestion(questionId, row) {
@@ -201,54 +96,6 @@ function createNewExam() {
       window.location.replace("view_exams.php");
     }
   }
-}
-
-function getAllExams() {
-  var request = new XMLHttpRequest();
-  var html = "";
-
-  request.onreadystatechange = function() {
-    if (this.readyState == 4 && this.status == 200) {
-      var response = JSON.parse(this.responseText);
-
-      // looping through the data response
-      for (var a = 0; a < response.length; a++) {
-        var id = response[a].id;
-        var examName = response[a].name;
-        var points = response[a].points;
-        var pointsArray = points.split(",");
-        var questionsArray = [];
-
-        for (var i = 0; i < pointsArray.length; i++) {
-          var question = response[a][i];
-          questionsArray.push(question);
-        }
-
-        var dataObj = {
-          id: id,
-          questions: questionsArray,
-          points: pointsArray
-        };
-
-        var data = JSON.stringify(dataObj);
-
-        // appending html
-        html += "<tr style='text-align:center'>";
-        html +=
-          "<td onclick='displayExamQuestions(" +
-          data +
-          ")'>" +
-          examName +
-          "</td>";
-        html += "</tr>";
-      }
-
-      document.getElementById("examsDisplay").innerHTML = html;
-    }
-  };
-
-  request.open("POST", "curl/getExams.php", true);
-  request.send(null);
 }
 
 function displayExamQuestions(object) {
