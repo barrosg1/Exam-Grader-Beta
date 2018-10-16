@@ -88,7 +88,7 @@ function submitExam(object) {
     if (this.readyState == 4 && this.status == 200) {
       var response = JSON.parse(this.responseText);
 
-      console.log(response);
+      alert(response);
     }
   };
 
@@ -102,6 +102,8 @@ function testPython() {
   var request = new XMLHttpRequest();
   request.onreadystatechange = function() {
     if (this.readyState == 4 && this.status == 200) {
+      var response = JSON.parse(this.responseText);
+      console.log(response);
     }
   };
   var dataObj = {
@@ -112,7 +114,7 @@ function testPython() {
 
   request.open(
     "POST",
-    "https://web.njit.edu/~hac9/quiz-grader/middle/middle.php",
+    "https://web.njit.edu/~hac9/quiz-grader/middle/testing.php",
     true
   );
   request.send(data);

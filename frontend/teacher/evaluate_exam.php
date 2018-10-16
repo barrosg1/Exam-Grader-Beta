@@ -1,6 +1,6 @@
 <?php include("../layout/instructor_header.php"); ?>
 
-    <div id="viewExamsDiv" class="boxContainer">
+    <div id="studentExamInstance" class="boxContainer">
         <h1 align="center">Students</h1>
         <div id="selectQuestionDiv">
         <table id="examsTable" class="tableDisplay">
@@ -15,7 +15,7 @@
     </div>
     </div>
 
-     <div id="viewExamsDiv" class="boxContainer">
+     <div id="studentExamInstance" class="boxContainer">
         <h1 align="center">Exams</h1>
         <div id="selectQuestionDiv">
         <table id="examsTable" class="tableDisplay">
@@ -28,3 +28,4 @@
     </div>
     </div>
 
+    <div id="evaluateExam" class="boxContainer" style="display:none"></div>

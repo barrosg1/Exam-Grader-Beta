@@ -316,13 +316,21 @@ label {
   cursor: pointer;
 }
 
-#viewExamsDiv {
+#viewExamsDiv,
+#studentExamInstance {
   margin: 20px;
   height: 530px;
   width: 30%;
 }
 
-#takeExamDiv {
+#studentsDisplay {
+  margin: 20px;
+  height: 530px;
+  width: 30%;
+}
+
+#takeExamDiv,
+#viewExamGrade {
   width: 80%;
 }
 
@@ -336,6 +344,11 @@ label {
   min-height: 200px;
   margin-top: auto;
   margin-bottom: 12px;
+  resize: none;
+}
+
+.studentGradeTextArea {
+  width: 45%;
   resize: none;
 }
 

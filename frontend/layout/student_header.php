@@ -15,6 +15,8 @@
     <script src="../js/logout.js"></script>
     <script src="../js/utils.js"></script>   
     <script src="../js/student.js"></script> 
+    <script src="../js/getAllExamsStudent.js"></script>
+    <script src="../js/examInstance.js"></script>
 
     <script>
       if(localStorage.getItem("id") === null || localStorage.getItem("instructor") === null) {
