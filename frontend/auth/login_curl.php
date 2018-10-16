@@ -9,7 +9,6 @@
 	if(isset($response['password'])) $password = $response['password'];
     
     // API URL
-    //$url = "https://web.njit.edu/~vm348/quiz-grader/backend/login.php"; 
     $url = "https://web.njit.edu/~hac9/quiz-grader/middle/login.php"; 
 
     $curl = curl_init($url);

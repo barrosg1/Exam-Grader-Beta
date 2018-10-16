@@ -46,7 +46,9 @@ function sendAjaxData(uname, psw) {
       var id = data.id;
 
       if (!user || !id) {
-        console.log(data);
+        document.querySelector("#showMessage").style.display = "block";
+        document.querySelector("#showMessage").innerHTML =
+          "<p id='displayMessage'>" + data + "</p>";
       } else {
         localStorage.setItem("instructor", user);
         localStorage.setItem("id", id);
