@@ -5,6 +5,25 @@ request.onreadystatechange = function() {
     var response = JSON.parse(this.responseText);
 
     console.log(response);
+
+    var html = "";
+
+    // looping through the data response
+    for (var a = 0; a < response.length; a++) {
+      var id = response[a].id;
+      var ucid = response[a].username;
+      var fname = response[a].fname;
+      var lname = response[a].lname;
+
+      // appending html
+      html += "<tr>";
+      html += "<td>" + ucid + "</td>";
+      html += "<td>" + fname + "</td>";
+      html += "<td>" + lname + "</td>";
+      html += "</tr>";
+    }
+
+    document.getElementById("studentsDisplay").innerHTML = html;
   }
 };
 

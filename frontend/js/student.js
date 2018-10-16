@@ -11,7 +11,8 @@ function takeExam(object) {
   var html = "";
   html += "<h1>" + examName + "</h1>";
 
-  var questionBundleList = [];
+  var questionIdArray = [];
+  var pointsArray = [];
 
   for (var i = 0; i < points.length; i++) {
     var questionId = questionsId[i];
@@ -33,17 +34,17 @@ function takeExam(object) {
     html += "</div>";
     html += "<hr>";
 
-    questionBundleList[i] = { questionId: questionId, points: point };
+    questionIdArray[i] = questionId;
+    pointsArray[i] = point;
   }
 
   var dataObj = {
     examId: examId,
-    questionBundleList: questionBundleList
+    questionIdArray: questionIdArray,
+    pointsArray: pointsArray
   };
 
   var data = JSON.stringify(dataObj);
-
-  console.log(data);
 
   html +=
     "<center><input id='examSaveBtn' type='button' value='Save' onclick='submitExam(" +
@@ -57,19 +58,27 @@ function submitExam(object) {
   var examId = object.examId;
   var studentId = localStorage.getItem("id");
   var questionIdArray = object.questionIdArray;
+  var pointsArray = object.pointsArray;
 
-  var answerArray = [];
+  var questionsArray = [];
 
   for (var i = 0; i < questionIdArray.length; i++) {
-    var answer = document.getElementById(questionIdArray[i]).value;
+    var questionId = questionIdArray[i];
+    var answer = document.getElementById(questionId).value;
+    var points = pointsArray[i];
 
-    answerArray[i] = { answer: answer };
+    questionsArray[i] = {
+      questionId: questionId,
+      answer: answer,
+      points: points,
+      expectedOutput: "something"
+    };
   }
 
   var dataObj = {
     examId: examId,
     studentId: studentId,
-    answers: answerArray
+    questions: questionsArray
   };
 
   var data = JSON.stringify(dataObj);

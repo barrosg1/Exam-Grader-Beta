@@ -17,6 +17,8 @@
     <script src="../js/getAllExams.js"></script>
     <script src="../js/getQuestionsCQ.js"></script>
     <script src="../js/getQuestionsExam.js"></script>
+    <script src="../js/getAllStudents.js"></script>
+    <script src="../js/examInstance.js"></script>
 
     <script>
       if(localStorage.getItem("id") === null || localStorage.getItem("instructor") === null) {

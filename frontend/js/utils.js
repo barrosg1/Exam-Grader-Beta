@@ -138,10 +138,7 @@ function filterDifficultyCQ() {
 // }
 
 // window.addEventListener("load", function() {
-//   //getQuestionsExam();
-//   //getQuestionsCQ();
-//   //getAllExams();
-//   getAllExamsStudent();
+//   getAllStudents();
 // });
 
 var data = {

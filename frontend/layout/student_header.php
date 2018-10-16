@@ -11,11 +11,10 @@
 
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 
+    <!-- <script src="../js/getAllStudents.js"></script> -->
     <script src="../js/logout.js"></script>
-    <script src="../js/student.js"></script>
-    <script src="../js/utils.js"></script>
-    <script src="../js/getAllExamsStudent.js"></script>
-    <script src="../js/getAllStudents.js"></script>
+    <script src="../js/utils.js"></script>   
+    <script src="../js/student.js"></script> 
 
     <script>
       if(localStorage.getItem("id") === null || localStorage.getItem("instructor") === null) {

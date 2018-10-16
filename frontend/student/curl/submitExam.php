@@ -5,8 +5,8 @@
     
     // if inputs are set then assign each input value to variables
     if(isset($response['examId'])) $examId = $response['examId']; 
-    if(isset($response['answers'])) $answers = $response['answers']; 
     if(isset($response['studentId'])) $studentId = $response['studentId']; 
+    if(isset($response['questions'])) $questions = $response['questions']; 
     
     // API URL
     //$url = "https://web.njit.edu/~vm348/quiz-grader/backend/addUserExam.php";
@@ -15,7 +15,7 @@
     $curl = curl_init($url);
     
     // setup request to send JSON string to the POST fields
-    $data = array('studentId' => $studentId, 'examId' => $examId, 'answers' => $answers);
+    $data = array('studentId' => $studentId, 'examId' => $examId, 'questions' => $questions);
     
     // attach encoded JSON string to the POST fields
     curl_setopt($curl, CURLOPT_POSTFIELDS, json_encode($data));
