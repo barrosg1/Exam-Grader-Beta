@@ -89,6 +89,8 @@ function submitExam(object) {
       var response = JSON.parse(this.responseText);
 
       alert(response);
+
+      console.log(response);
     }
   };
 

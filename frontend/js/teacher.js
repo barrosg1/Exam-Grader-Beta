@@ -78,8 +78,8 @@ function createNewExam() {
       var request = new XMLHttpRequest();
       request.onreadystatechange = function() {
         if (this.readyState == 4 && this.status == 200) {
-          var response = JSON.parse(this.responseText);
-          console.log(response);
+          // var response = JSON.parse(this.responseText);
+          // console.log(response);
         }
       };
 
@@ -87,6 +87,8 @@ function createNewExam() {
         examName: examName,
         selectedQ: SELECTED_QUESTIONS
       };
+
+      console.log(dataObj);
 
       var data = JSON.stringify(dataObj);
 

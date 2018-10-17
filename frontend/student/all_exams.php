@@ -2,7 +2,7 @@
 
 
 <div id="viewExamsDiv" class="boxContainer">
-    <h1 align="center">Choose Exams</h1>
+    <h1 align="center">Choose an Exam</h1>
     <div id="selectQuestionDiv">
         <table id="examsTable" class="tableDisplay">
             <tr>

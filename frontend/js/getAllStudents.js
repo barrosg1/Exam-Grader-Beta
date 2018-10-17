@@ -116,6 +116,7 @@ function viewExamInstance(obj) {
   document.getElementById("evaluateExam").style.display = "block";
 
   var html = "";
+  html += "<h3 style='text-align: left'>" + examName + "</h3>";
 
   for (var i = 0; i < questionsArray.length; i++) {
     var questionId = selectedQArray[i];
@@ -126,6 +127,8 @@ function viewExamInstance(obj) {
     var feedback = feedbackArray[i];
     var feedbackId = "feedback" + questionId;
     var pointsGivenId = "pointsGiven" + questionId;
+
+    if (feedback == null || feedback == "NULL") feedback = "";
 
     html += '<div class="takeExamQ">';
     html += "<center>";

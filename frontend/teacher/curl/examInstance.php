@@ -5,7 +5,8 @@ $response = json_decode($str_json, true); // decoding received JSON to array
 
 if(isset($response['studentId'])) $studentId = $response['studentId']; 
 
-$url = "https://web.njit.edu/~vm348/quiz-grader/backend/getInstance.php"; 
+//$url = "https://web.njit.edu/~vm348/quiz-grader/backend/getInstance.php"; 
+$url = "https://web.njit.edu/~hac9/quiz-grader/middle/examInstance.php";
 
 $curl = curl_init($url);
 $data = array('studentId' => $studentId);

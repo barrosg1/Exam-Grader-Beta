@@ -32,7 +32,7 @@
         <ul>
 
             <li ><a href='./all_exams.php'><span>Take Exam</span></a></li>
-            <li ><a href='./view_exam.php'><span>View Exam</span></a></li>
+            <li ><a href='./view_exam.php'><span>See Grades</span></a></li>
             <li ><a href='./testing.php'><span>Testing</span></a></li>
            
             <li id="logout" style="float:right" onclick="logout()"><a href='#'><span>Logout</span></a></li>

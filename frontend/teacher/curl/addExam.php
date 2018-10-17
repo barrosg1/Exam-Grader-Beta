@@ -8,8 +8,8 @@
     if(isset($response['selectedQ'])) $selectedQ = $response['selectedQ'];  
     
     // API URL
-    $url = "https://web.njit.edu/~vm348/quiz-grader/backend/addExams.php";
-    //$url = "https://web.njit.edu/~hac9/quiz-grader/middle/addExam.php";
+    //$url = "https://web.njit.edu/~vm348/quiz-grader/backend/addExams.php";
+    $url = "https://web.njit.edu/~hac9/quiz-grader/middle/addExam.php";
 
     $curl = curl_init($url);
     

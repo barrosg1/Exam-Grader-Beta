@@ -16,8 +16,6 @@ request.onreadystatechange = function() {
       }
     }
 
-    console.log(releasedExams);
-
     if (releasedExams.length === 0) {
       html += "<p>No exams have been released</p>";
     } else {
@@ -41,6 +39,7 @@ request.onreadystatechange = function() {
         var answersArray = [answer_1, answer_2, answer_3];
         var feedbackArray = [feedback_1, feedback_2, feedback_3];
         var pointsGivenArray = [grade_1, grade_2, grade_3];
+        var studentId = localStorage.getItem("id");
 
         for (var i = 0; i < pointsArray.length; i++) {
           var question = response[a][i];
@@ -54,7 +53,8 @@ request.onreadystatechange = function() {
           questionsArray: questionsArray,
           answersArray: answersArray,
           feedbackArray: feedbackArray,
-          pointsGivenArray: pointsGivenArray
+          pointsGivenArray: pointsGivenArray,
+          studentId: studentId
         };
 
         var data = JSON.stringify(dataObj);
@@ -92,42 +92,68 @@ function viewExamGrades(obj) {
   var answersArray = obj.answersArray;
   var feedbackArray = obj.feedbackArray;
   var pointsGivenArray = obj.pointsGivenArray;
+  var studentId = obj.studentId;
 
   document.getElementById("viewExamsDiv").style.display = "none";
   document.getElementById("viewExamGrade").style.display = "block";
 
-  var html = "";
-  html += "<center>";
-  html += '<div class="takeExamQ">';
-  html += "<h2>Total Score: 55 out of 100</h2>";
-  html += "<h2>Percentage: 55%</h2>";
-  html += "<hr>";
+  // ----------------------------------------------------
+  var dataObj = { studentId: studentId };
+  var data = JSON.stringify(dataObj);
 
-  for (var i = 0; i < questionsArray.length; i++) {
-    var question = questionsArray[i];
-    var answer = answersArray[i];
-    var points = pointsArray[i];
-    var feedback = feedbackArray[i];
+  var request = new XMLHttpRequest();
+  request.onreadystatechange = function() {
+    if (this.readyState == 4 && this.status == 200) {
+      var response = JSON.parse(this.responseText);
 
-    html += "<center>";
-    html += "<h2>Question " + (i + 1) + "</h2>";
-    html += '<h4 style="padding: 0 10px 0 10px;">' + question + "</h4>";
-    html += "<h3>Your answer:</h3>";
-    html +=
-      "<textarea class='studentGradeTextArea' name='subject' placeholder='Answer here..' style='height:130px' disabled>";
-    html += answer;
-    html += "</textarea>";
-    html += "<h3>Points Possible:</h3>";
-    html += "<p>" + points + " points</p>";
-    html += "<h3>Feedback:</h3>";
-    html +=
-      '<textarea class="studentGradeTextArea" name="subject" placeholder="Answer here.." style="height:130px" disabled>';
-    html += feedback;
-    html += "</textarea>";
-    html += "</center>";
-    html += "</div>";
-    html += "<hr>";
+      var grades = [];
 
-    document.getElementById("viewExamGrade").innerHTML = html;
-  }
+      for (var i = 0; i < response.length; i++) {
+        var grade_1 = response[i].grade_1;
+        var grade_2 = response[i].grade_2;
+        var grade_3 = response[i].grade_3;
+
+        grades[i] = [grade_1, grade_2, grade_3];
+      }
+
+      // ----------------------------------------------------
+
+      var html = "";
+      html += "<center>";
+      html += '<div class="takeExamQ">';
+      html += "<h2>Total Score: 55 out of 100</h2>";
+      html += "<h2>Percentage: 55%</h2>";
+      html += "<hr>";
+
+      for (var i = 0; i < questionsArray.length; i++) {
+        var question = questionsArray[i];
+        var answer = answersArray[i];
+        var points = pointsArray[i];
+        var feedback = feedbackArray[i];
+
+        html += "<center>";
+        html += "<h2>Question " + (i + 1) + "</h2>";
+        html += '<h4 style="padding: 0 10px 0 10px;">' + question + "</h4>";
+        html += "<h3>Your answer:</h3>";
+        html +=
+          "<textarea class='studentGradeTextArea' name='subject' placeholder='Answer here..' style='height:130px' disabled>";
+        html += answer;
+        html += "</textarea>";
+        html += "<h3>Points Possible:</h3>";
+        html += "<p>" + grades[i] + " points</p>";
+        html += "<h3>Feedback:</h3>";
+        html +=
+          '<textarea class="studentGradeTextArea" name="subject" placeholder="Answer here.." style="height:130px" disabled>';
+        html += feedback;
+        html += "</textarea>";
+        html += "</center>";
+        html += "</div>";
+        html += "<hr>";
+
+        document.getElementById("viewExamGrade").innerHTML = html;
+      }
+    }
+  };
+  request.open("POST", "curl/getInstance.php", true);
+  request.send(data);
 }

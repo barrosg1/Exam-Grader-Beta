@@ -9,8 +9,8 @@
     if(isset($response['gradedQuestions'])) $gradedQuestions = $response['gradedQuestions'];  
     
     // API URL
-    $url = "https://web.njit.edu/~vm348/quiz-grader/backend/upInstanceProf.php";
-    //$url = "https://web.njit.edu/~hac9/quiz-grader/middle/addQuestion.php";
+    //$url = "https://web.njit.edu/~vm348/quiz-grader/backend/upInstanceProf.php";
+    $url = "https://web.njit.edu/~hac9/quiz-grader/middle/releaseExam.php";
 
     $curl = curl_init($url);
     

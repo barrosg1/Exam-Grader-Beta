@@ -2,9 +2,9 @@
 
 
 <div id="viewExamsDiv" class="boxContainer">
-    <h1 align="center">View Exams</h1>
+    <h1 align="center">Exam Grades</h1>
     <div id="selectQuestionDiv">
-        <table id="examsTable" class="tableDisplay">
+        <table id="examsTable" class="tableDisplay" style="text-align:center">
             <tr>
             <th>Exam Name</th>
             </tr>

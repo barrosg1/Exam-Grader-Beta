@@ -16,7 +16,7 @@
     </div>
 
      <div id="studentExamInstance" class="boxContainer">
-        <h1 align="center">Exams</h1>
+     <h1 align="center">Exams</h1>
         <div id="selectQuestionDiv">
         <table id="examsTable" class="tableDisplay">
             <tr>
