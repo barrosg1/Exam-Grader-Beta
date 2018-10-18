@@ -9,16 +9,14 @@
     
     <title>Instrucor</title>
 
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-
     <script src="../teacher/js/teacher.js"></script>
     <script src="../teacher/js/getAllExams.js"></script>
     <script src="../teacher/js/getQuestionsCQ.js"></script>
     <script src="../teacher/js/getQuestionsExam.js"></script>
     <script src="../teacher/js/getAllStudents.js"></script>
+    
     <script src="../utils/examInstance.js"></script>
-
-    <script src="../utils/utils.js"></script>
+    <script src="../utils/filter.js"></script> 
     <script src="../auth/logout.js"></script>
     
     <script>

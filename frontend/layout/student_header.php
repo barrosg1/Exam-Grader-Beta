@@ -8,16 +8,11 @@
     <link rel="stylesheet" href="../css/style.css">
     
     <title>Student</title>
-
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-
-    <!-- <script src="../js/getAllStudents.js"></script> -->
     
     <script src="../student/js/student.js"></script> 
     <script src="../student/js/getAllExamsStudent.js"></script>
     <script src="../utils/examInstance.js"></script>
-
-    <script src="../utils/utils.js"></script> 
+    <script src="../utils/filter.js"></script> 
     <script src="../auth/logout.js"></script>  
 
     <script>
