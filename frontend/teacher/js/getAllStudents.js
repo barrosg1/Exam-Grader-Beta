@@ -16,7 +16,7 @@ request.onreadystatechange = function() {
       var lname = response[a].lname;
 
       // appending html
-      html += "<tr onclick='displayExamInstance(" + id + ")'>";
+      html += "<tr onclick='displayExamInstances(" + id + ")'>";
       html += "<td>" + ucid + "</td>";
       html += "<td>" + fname + "</td>";
       html += "<td>" + lname + "</td>";

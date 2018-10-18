@@ -17,10 +17,6 @@ request.onreadystatechange = function() {
       html += "<td>" + topic + "</td>";
       html += "<td>" + difficulty + "</td>";
       html += "<td>";
-      // html +=
-      //   "<input id='editBtn' class='editBtn' style='float:left' type='button' value='Edit' onclick='editQuestion(" +
-      //   data +
-      //   ")'>";
       html +=
         "<input id='deleteBtn' class='deleteBtn' style='float:left' type='button' value='Delete' onclick='deleteQuestion(" +
         id +

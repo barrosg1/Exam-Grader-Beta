@@ -167,7 +167,7 @@ function getQuestionsCQ() {
   request.send(null);
 }
 
-function displayExamInstance(studentId) {
+function displayExamInstances(studentId) {
   var request = new XMLHttpRequest();
 
   request.onreadystatechange = function() {
