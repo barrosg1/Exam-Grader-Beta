@@ -120,7 +120,7 @@ function getQuestion(questionId) {
   var request = new XMLHttpRequest();
   request.onreadystatechange = function() {
     if (this.readyState == 4 && this.status == 200) {
-      var responseQuestion = JSON.parse(this.responseText);
+      var response = JSON.parse(this.responseText);
     }
   };
 
@@ -185,23 +185,21 @@ function displayExamInstances(studentId) {
         var pointsArray = points.split(",");
         var selected = response[a].selectedQ;
         var selectedQArray = selected.split(",");
-        var answer_1 = response[a].answer_1;
-        var answer_2 = response[a].answer_2;
-        var answer_3 = response[a].answer_3;
-        var feedback_1 = response[a].feedback_1;
-        var feedback_2 = response[a].feedback_2;
-        var feedback_3 = response[a].feedback_3;
-        var grade_1 = response[a].grade_1;
-        var grade_2 = response[a].grade_2;
-        var grade_3 = response[a].grade_3;
+
         var questionsArray = [];
-        var answersArray = [answer_1, answer_2, answer_3];
-        var feedbackArray = [feedback_1, feedback_2, feedback_3];
-        var pointsGivenArray = [grade_1, grade_2, grade_3];
+        var answersArray = [];
+        var pointsGivenArray = [];
+        var feedbackArray = [];
 
         for (var i = 0; i < pointsArray.length; i++) {
-          var question = response[a][i];
-          questionsArray[i] = question;
+          var ans = "answer_" + (i + 1);
+          var pGiven = "grade_" + (i + 1);
+          var feedB = "feedback_" + (i + 1);
+
+          questionsArray[i] = response[a][i];
+          answersArray[i] = response[a][ans];
+          pointsGivenArray[i] = response[a][pGiven];
+          feedbackArray[i] = response[a][feedB];
         }
 
         var dataObj = {
