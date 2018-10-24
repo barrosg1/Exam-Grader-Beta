@@ -185,6 +185,10 @@ function displayExamInstances(studentId) {
         var pointsArray = points.split(",");
         var selected = response[a].selectedQ;
         var selectedQArray = selected.split(",");
+        var isGraded;
+
+        if (release == "1") isGraded = "Yes";
+        else isGraded = "No";
 
         var questionsArray = [];
         var answersArray = [];
@@ -222,6 +226,7 @@ function displayExamInstances(studentId) {
         // appending html
         html += "<tr onclick='viewExamInstance(" + data + ")'>";
         html += "<td>" + examName + "</td>";
+        html += "<td>" + isGraded + "</td>";
         html += "</tr>";
       }
 
@@ -270,7 +275,11 @@ function viewExamInstance(obj) {
     html += "<h2>Question " + (i + 1) + "</h2>";
     html += '<h4 style="padding: 0 10px 0 10px;">' + question + "</h4>";
     html += "<h3>Student's Answer:</h3>";
-    html += "<p>" + answer + "</p>";
+    //html += "<p>" + answer + "</p>";
+    html +=
+      '<textarea class="studentGradeTextArea" name="subject" placeholder="Answer here.." style="height:130px;" disabled>';
+    html += answer;
+    html += "</textarea>";
     html += "<h3>Points Possible:</h3>";
     html += "<p>" + points + " points</p>";
     html += "<h3>Points Given:</h3>";
@@ -320,8 +329,8 @@ function releaseExam(obj) {
     var feedbackId = "feedback" + questionId;
     var pointsGivenId = "pointsGiven" + questionId;
 
-    var newFeedbackVal = document.getElementById(feedbackId).value;
     var newPointsGiven = document.getElementById(pointsGivenId).value;
+    var newFeedbackVal = document.getElementById(feedbackId).value;
 
     gradedQuestions[i] = {
       pointsGiven: newPointsGiven,

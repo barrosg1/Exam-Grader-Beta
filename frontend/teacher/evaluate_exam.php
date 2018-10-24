@@ -21,6 +21,7 @@
         <table id="examsTable" class="tableDisplay">
             <tr>
                 <th>Exam Name</th>
+                <th>Graded</th>
             </tr>
 
             <tbody id="studentExamDisplay"></tbody> <!-- Data will be displayed here -->         
