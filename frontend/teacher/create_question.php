@@ -4,6 +4,7 @@
     <h1 align="center">Create Question</h1>
     <form>
         <div class="row">
+            <!-- Topic -->
             <label for="topic">Topic</label>
             <select id="topic" >
                 <option value="">---</option>
@@ -14,6 +15,7 @@
                 <option value="dictionaries">dictionaries</option>
             </select>
 
+            <!-- Difficulty -->
             <label for="difficulty">Difficulty</label>
             <select id="difficulty" >
                 <option value="">---</option>
@@ -22,11 +24,69 @@
                 <option value="hard">hard</option>
             </select>
 
+            <!-- Question -->
             <label for="question">Question</label>
             <textarea id="question" placeholder="* write question.. " style="height:200px"></textarea>
-    
-            
-            <input id="createBtn" type="button" value="Add Question" onclick="addQuestion();">
+
+           
+            <!-- Test Cases -->
+            <label for="testCases">Test Cases:</label>
+            <div class="testCase">
+                <div >
+                    <input id="function1"  type="text" placeholder="Function">
+                </div>
+                <div style="padding-left: 5px">
+                    <input id="expectedOutput1" type="text" placeholder="Expected Output">
+                    </form>
+                </div>
+            </div>
+            <div class="testCase" >
+                <div >
+                    <input id="function2" type="text" placeholder="Function">
+                </div>
+                <div style="padding-left: 5px">
+                    <input id="expectedOutput2" type="text" placeholder="Expected Output">
+                    </form>
+                </div>
+            </div>
+            <div class="testCase" >
+                <div >
+                    <input id="function3" type="text" placeholder="Function">
+                </div>
+                <div style="padding-left: 5px">
+                    <input id="expectedOutput3" type="text" placeholder="Expected Output">
+                    </form>
+                </div>
+            </div>
+            <div class="testCase" >
+                <div >
+                    <input id="function4" type="text" placeholder="Function">
+                </div>
+                <div style="padding-left: 5px">
+                    <input id="expectedOutput4" type="text" placeholder="Expected Output">
+                    </form>
+                </div>
+            </div>
+            <div class="testCase">
+                <div >
+                    <input id="function5" type="text" placeholder="Function">
+                </div>
+                <div style="padding-left: 5px">
+                    <input id="expectedOutput5" type="text" placeholder="Expected Output">
+                    </form>
+                </div>
+            </div>
+            <div class="testCase">
+                <div >
+                    <input id="function6" type="text" placeholder="Function">
+                </div>
+                <div style="padding-left: 5px">
+                    <input id="expectedOutput6" type="text" placeholder="Expected Output">
+                    </form>
+                </div>
+            </div>
+
+            <center><input id="createBtn" type="button" value="Add Question" onclick="addQuestion();"><center/>
         </div>
     </form>
 </div>

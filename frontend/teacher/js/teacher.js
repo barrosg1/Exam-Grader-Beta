@@ -6,17 +6,44 @@ function addQuestion() {
   var topic = document.querySelector("#topic").value;
   var difficulty = document.querySelector("#difficulty").value;
   var question = document.querySelector("#question").value;
+  var function1 = document.querySelector("#function1").value;
+  var function2 = document.querySelector("#function2").value;
+  var function3 = document.querySelector("#function3").value;
+  var function4 = document.querySelector("#function4").value;
+  var function5 = document.querySelector("#function5").value;
+  var function6 = document.querySelector("#function6").value;
+  var expectedOutput1 = document.querySelector("#expectedOutput1").value;
+  var expectedOutput2 = document.querySelector("#expectedOutput2").value;
+  var expectedOutput3 = document.querySelector("#expectedOutput3").value;
+  var expectedOutput4 = document.querySelector("#expectedOutput4").value;
+  var expectedOutput5 = document.querySelector("#expectedOutput5").value;
+  var expectedOutput6 = document.querySelector("#expectedOutput6").value;
 
   if (question == "" || topic == "" || difficulty == "") {
     alert("All input fields are required.");
+  } else if (
+    function1 == "" ||
+    expectedOutput1 == "" ||
+    function2 == "" ||
+    expectedOutput2 == ""
+  ) {
+    alert("At least two test cases is required.");
   } else {
     var dataObj = {
       topic: topic,
       difficulty: difficulty,
-      question: question
+      question: question,
+      testCase1: { function: function1, expectedOutput: expectedOutput1 },
+      testCase2: { function: function2, expectedOutput: expectedOutput2 },
+      testCase3: { function: function3, expectedOutput: expectedOutput3 },
+      testCase4: { function: function4, expectedOutput: expectedOutput4 },
+      testCase5: { function: function5, expectedOutput: expectedOutput5 },
+      testCase6: { function: function6, expectedOutput: expectedOutput6 }
     };
 
     var data = JSON.stringify(dataObj);
+
+    console.log(dataObj);
 
     var request = new XMLHttpRequest();
     request.onreadystatechange = function() {
