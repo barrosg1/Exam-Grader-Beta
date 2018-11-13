@@ -15,6 +15,16 @@
                 <option value="dictionaries">dictionaries</option>
             </select>
 
+            <!-- Constraint -->
+            <label for="constraint">Constraint</label>
+            <select id="constraint" >
+                <option value="">---</option>
+                <option value="print">print</option>
+                <option value="return">return</option>
+                <option value="while">while</option>
+                <option value="for">for</option>
+            </select>
+
             <!-- Difficulty -->
             <label for="difficulty">Difficulty</label>
             <select id="difficulty" >
@@ -28,61 +38,56 @@
             <label for="question">Question</label>
             <textarea id="question" placeholder="* write question.. " style="height:200px"></textarea>
 
-           
             <!-- Test Cases -->
-            <label for="testCases">Test Cases:</label>
+            <label for="testCases">Test Cases:</label>         
+            <input id="functionName"  type="text" placeholder="Function Name" style="width:25%; margin-bottom: 20px;">
+            
             <div class="testCase">
                 <div >
-                    <input id="function1"  type="text" placeholder="Function">
+                    <input id="function1"  type="text" placeholder="Test Case">
                 </div>
                 <div style="padding-left: 5px">
                     <input id="expectedOutput1" type="text" placeholder="Expected Output">
-                    </form>
                 </div>
             </div>
-            <div class="testCase" >
+            <div class="testCase">
                 <div >
-                    <input id="function2" type="text" placeholder="Function">
+                    <input id="function2"  type="text" placeholder="Test Case">
                 </div>
                 <div style="padding-left: 5px">
                     <input id="expectedOutput2" type="text" placeholder="Expected Output">
-                    </form>
                 </div>
             </div>
-            <div class="testCase" >
+            <div class="testCase">
                 <div >
-                    <input id="function3" type="text" placeholder="Function">
+                    <input id="function3"  type="text" placeholder="Test Case">
                 </div>
                 <div style="padding-left: 5px">
                     <input id="expectedOutput3" type="text" placeholder="Expected Output">
-                    </form>
                 </div>
             </div>
-            <div class="testCase" >
+            <div class="testCase">
                 <div >
-                    <input id="function4" type="text" placeholder="Function">
+                    <input id="function4"  type="text" placeholder="Test Case">
                 </div>
                 <div style="padding-left: 5px">
                     <input id="expectedOutput4" type="text" placeholder="Expected Output">
-                    </form>
                 </div>
             </div>
             <div class="testCase">
                 <div >
-                    <input id="function5" type="text" placeholder="Function">
+                    <input id="function5"  type="text" placeholder="Test Case">
                 </div>
                 <div style="padding-left: 5px">
                     <input id="expectedOutput5" type="text" placeholder="Expected Output">
-                    </form>
                 </div>
             </div>
             <div class="testCase">
                 <div >
-                    <input id="function6" type="text" placeholder="Function">
+                    <input id="function6"  type="text" placeholder="Test Case">
                 </div>
                 <div style="padding-left: 5px">
                     <input id="expectedOutput6" type="text" placeholder="Expected Output">
-                    </form>
                 </div>
             </div>
 
@@ -121,45 +126,6 @@
            
         </table>
     </div> 
-
-
-    <!-- The Modal -->
-    <div id="myModal" class="modal">
-
-    <!-- Modal content -->
-    <div class="modal-content">
-        <span class="close">&times;</span>
-        <form>
-        <div class="row">
-            <!-- <label for="country">Function Name</label>
-            <input type="text" id="modalFunctionName" name="firstname" placeholder="* Function name"> -->
-            <label for="country">Topic</label>
-            <select id="modalTopic" >
-                <option value="">---</option>
-                <option value="general">general</option>
-                <option value="if">if</option>
-                <option value="loop">loop</option>
-                <option value="array">array</option>
-                <option value="dictionaries">dictionaries</option>
-            </select>
-
-            <label for="country">Difficulty</label>
-            <select id="modalDifficulty" >
-                <option value="">---</option>
-                <option value="easy">easy</option>
-                <option value="medium">medium</option>
-                <option value="hard">hard</option>
-            </select>
-
-            <label for="question">Question</label>
-            <textarea id="modalQuestion" placeholder="* write question.. " style="height:200px"></textarea>
-    
-            <input id="modalSaveBtn" type="button" value="Update">
-        </div>
-        </form>
-    </div>
-
-</div>
 
 </div>
 

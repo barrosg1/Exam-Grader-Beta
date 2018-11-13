@@ -4,9 +4,12 @@ function takeExam(object) {
   var questionsId = object.questionsId;
   var questions = object.questions;
   var points = object.points;
+  var studentId = localStorage.getItem("id");
 
   document.getElementById("viewExamsDiv").style.display = "none";
   document.getElementById("takeExamDiv").style.display = "block";
+
+  var data = JSON.stringify(dataObj);
 
   var html = "";
   html += "<h1>" + examName + "</h1>";
@@ -26,7 +29,6 @@ function takeExam(object) {
     html += question;
     html += " (" + point + " points)";
     html += "</h4>";
-    html += "</h4>";
     html +=
       '<textarea id="' +
       questionId +
@@ -38,6 +40,7 @@ function takeExam(object) {
     pointsArray[i] = point;
   }
 
+  // Data to pass to functions to save and instance and submit an exam
   var dataObj = {
     examId: examId,
     questionIdArray: questionIdArray,
@@ -46,13 +49,41 @@ function takeExam(object) {
 
   var data = JSON.stringify(dataObj);
 
+  // html +=
+  //   "<center><input id='examSaveBtn' type='button' value='Save' onclick='saveExamInstance(" +
+  //   data +
+  //   ")'>";
   html +=
-    "<center><input id='examSaveBtn' type='button' value='Save' onclick='submitExam(" +
+    "<center><input id='examSaveBtn' type='button' value='Submit Exam' onclick='submitExam(" +
     data +
-    ")'></center>";
+    ")'>";
+  html += "</center>";
 
   document.getElementById("takeExamDiv").innerHTML = html;
+
+  // Data to send to create an instance of an exam
+  var dataCreateInstance = {
+    examId: examId,
+    studentId: studentId
+  };
+
+  var dataCreate = JSON.stringify(dataCreateInstance);
+
+  var request = new XMLHttpRequest();
+  request.onreadystatechange = function() {
+    if (this.readyState == 4 && this.status == 200) {
+      // var response = JSON.parse(this.responseText);
+      // console.log(response);
+    }
+  };
+
+  request.open("POST", "curl/createInstance.php", true);
+  request.send(dataCreate);
 }
+
+// function saveExamInstance(object) {
+//   alert("Save Exam instance is working!");
+// }
 
 function submitExam(object) {
   var examId = object.examId;
@@ -70,8 +101,7 @@ function submitExam(object) {
     questionsArray[i] = {
       questionId: questionId,
       answer: answer,
-      points: points,
-      expectedOutput: "something"
+      points: points
     };
   }
 
@@ -84,18 +114,10 @@ function submitExam(object) {
   var data = JSON.stringify(dataObj);
 
   var request = new XMLHttpRequest();
-  request.onreadystatechange = function() {
-    if (this.readyState == 4 && this.status == 200) {
-      var response = JSON.parse(this.responseText);
-
-      alert(response);
-
-      console.log(response);
-    }
-  };
-
   request.open("POST", "curl/submitExam.php", true);
   request.send(data);
+
+  alert("Exam has been submitted!");
 }
 
 function viewExamGrades(obj) {
@@ -105,6 +127,7 @@ function viewExamGrades(obj) {
   var answersArray = obj.answersArray;
   var feedbackArray = obj.feedbackArray;
   var pointsGivenArray = obj.pointsGivenArray;
+  var total = obj.total;
 
   document.getElementById("viewExamsDiv").style.display = "none";
   document.getElementById("viewExamGrade").style.display = "block";
@@ -113,8 +136,8 @@ function viewExamGrades(obj) {
   html += "<center>";
   html += "<h1>Exam Name: " + examName + "</h1>";
   html += '<div class="takeExamQ">';
-  html += "<h3>Total Score: 55 out of 100</h3>";
-  html += "<h3>Percentage: 55%</h3>";
+  html += "<h3>Total Score: " + total + " out of 100</h3>";
+  html += "<h3>Percentage: " + total + "%</h3>";
   html += "<hr>";
 
   for (var j = 0; j < questionsArray.length; j++) {

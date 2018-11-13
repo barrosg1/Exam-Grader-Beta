@@ -4,6 +4,8 @@ request.onreadystatechange = function() {
   if (this.readyState == 4 && this.status == 200) {
     var response = JSON.parse(this.responseText);
 
+    console.log(response);
+
     var html = "";
     var releasedExams = [];
 
@@ -27,6 +29,7 @@ request.onreadystatechange = function() {
         var release = response[a].release_exam;
         var examName = response[a].name;
         var pointsArray = response[a].points.split(",");
+        var total = response[a].total;
 
         var questionsArray = [];
         var answersArray = [];
@@ -50,7 +53,8 @@ request.onreadystatechange = function() {
           questionsArray: questionsArray,
           answersArray: answersArray,
           feedbackArray: feedbackArray,
-          pointsGivenArray: pointsGivenArray
+          pointsGivenArray: pointsGivenArray,
+          total: total
         };
         var data = JSON.stringify(dataObj);
 

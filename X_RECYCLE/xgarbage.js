@@ -107,3 +107,79 @@ var data = {
     }
   ]
 };
+
+////////////////////////////////////////////////////
+
+function newTestCaseInput() {
+  var numberTC = document.getElementById("numberTC").value; //number of test cases
+  var wrapperTC = document.getElementById("wrapperTC");
+
+  console.log(numberTC);
+
+  if (wrapperTC.firstChild) {
+    while (wrapperTC.firstChild) {
+      wrapperTC.removeChild(wrapperTC.firstChild);
+    }
+  }
+
+  for (i = 0; i < numberTC; i++) {
+    var input = document.createElement("input");
+    input.type = "text";
+    input.id = "testCase_" + i;
+    input.name = "testCaseInput";
+    wrapperTC.appendChild(input);
+    wrapperTC.appendChild(document.createElement("br"));
+  }
+}
+
+{
+  /* <label for="numberTC"># of Test Cases:</label>        
+            <select id="numberTC" style="width: 12%" onchange="newTestCaseInput();">
+                <option value="">---</option>
+                <option value="2">2</option>
+                <option value="3">3</option>
+                <option value="4">4</option>
+                <option value="5">5</option>
+                <option value="6">6</option>
+            </select>
+
+            <div id="wrapperTC"></div> */
+}
+
+// <!-- The Modal -->
+// <div id="myModal" class="modal">
+
+// <!-- Modal content -->
+// <div class="modal-content">
+//     <span class="close">&times;</span>
+//     <form>
+//     <div class="row">
+//         <!-- <label for="country">Function Name</label>
+//         <input type="text" id="modalFunctionName" name="firstname" placeholder="* Function name"> -->
+//         <label for="country">Topic</label>
+//         <select id="modalTopic" >
+//             <option value="">---</option>
+//             <option value="general">general</option>
+//             <option value="if">if</option>
+//             <option value="loop">loop</option>
+//             <option value="array">array</option>
+//             <option value="dictionaries">dictionaries</option>
+//         </select>
+
+//         <label for="country">Difficulty</label>
+//         <select id="modalDifficulty" >
+//             <option value="">---</option>
+//             <option value="easy">easy</option>
+//             <option value="medium">medium</option>
+//             <option value="hard">hard</option>
+//         </select>
+
+//         <label for="question">Question</label>
+//         <textarea id="modalQuestion" placeholder="* write question.. " style="height:200px"></textarea>
+
+//         <input id="modalSaveBtn" type="button" value="Update">
+//     </div>
+//     </form>
+// </div>
+
+// </div>

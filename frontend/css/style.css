@@ -354,8 +354,7 @@ label {
 }
 
 .studentGradeTextArea {
-  width: 45%;
-  resize: none;
+  width: 50%;
 }
 
 input[type="checkbox"] {

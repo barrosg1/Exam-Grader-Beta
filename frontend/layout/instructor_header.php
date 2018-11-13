@@ -7,7 +7,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" href="../css/style.css">
     
-    <title>Instrucor</title>
+    <title>Instructor</title>
 
     <script src="../teacher/js/teacher.js"></script>
     <script src="../teacher/js/getAllExams.js"></script>

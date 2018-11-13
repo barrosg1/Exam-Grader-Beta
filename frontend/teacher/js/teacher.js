@@ -4,8 +4,10 @@ var SELECTED_QUESTIONS = []; // store selected answers to add to the exam
 // create a new question
 function addQuestion() {
   var topic = document.querySelector("#topic").value;
+  var constraint = document.querySelector("#constraint").value;
   var difficulty = document.querySelector("#difficulty").value;
   var question = document.querySelector("#question").value;
+  var functionName = document.querySelector("#functionName").value;
   var function1 = document.querySelector("#function1").value;
   var function2 = document.querySelector("#function2").value;
   var function3 = document.querySelector("#function3").value;
@@ -19,7 +21,7 @@ function addQuestion() {
   var expectedOutput5 = document.querySelector("#expectedOutput5").value;
   var expectedOutput6 = document.querySelector("#expectedOutput6").value;
 
-  if (question == "" || topic == "" || difficulty == "") {
+  if (question == "" || topic == "" || constraint == "" || difficulty == "") {
     alert("All input fields are required.");
   } else if (
     function1 == "" ||
@@ -31,24 +33,30 @@ function addQuestion() {
   } else {
     var dataObj = {
       topic: topic,
+      constraint: constraint,
       difficulty: difficulty,
       question: question,
-      testCase1: { function: function1, expectedOutput: expectedOutput1 },
-      testCase2: { function: function2, expectedOutput: expectedOutput2 },
-      testCase3: { function: function3, expectedOutput: expectedOutput3 },
-      testCase4: { function: function4, expectedOutput: expectedOutput4 },
-      testCase5: { function: function5, expectedOutput: expectedOutput5 },
-      testCase6: { function: function6, expectedOutput: expectedOutput6 }
+      functionName: functionName,
+      testCase1: { testCase: function1, expectedOutput: expectedOutput1 },
+      testCase2: { testCase: function2, expectedOutput: expectedOutput2 },
+      testCase3: { testCase: function3, expectedOutput: expectedOutput3 },
+      testCase4: { testCase: function4, expectedOutput: expectedOutput4 },
+      testCase5: { testCase: function5, expectedOutput: expectedOutput5 },
+      testCase6: { testCase: function6, expectedOutput: expectedOutput6 }
     };
 
     var data = JSON.stringify(dataObj);
-
-    console.log(dataObj);
 
     var request = new XMLHttpRequest();
     request.onreadystatechange = function() {
       if (this.readyState == 4 && this.status == 200) {
         getQuestionsCQ();
+
+        //var response = JSON.parse(this.responseText);
+        //console.log(response);
+
+        alert(this.responseText);
+        console.log(this.responseText);
       }
     };
 
@@ -102,14 +110,6 @@ function createNewExam() {
     if (SELECTED_QUESTIONS.length == 0) {
       alert("You must select at least one question");
     } else {
-      var request = new XMLHttpRequest();
-      request.onreadystatechange = function() {
-        if (this.readyState == 4 && this.status == 200) {
-          // var response = JSON.parse(this.responseText);
-          // console.log(response);
-        }
-      };
-
       var dataObj = {
         examName: examName,
         selectedQ: SELECTED_QUESTIONS
@@ -119,6 +119,7 @@ function createNewExam() {
 
       var data = JSON.stringify(dataObj);
 
+      var request = new XMLHttpRequest();
       request.open("POST", "curl/addExam.php", true);
       request.send(data);
 
@@ -141,20 +142,6 @@ function displayExamQuestions(object) {
   }
 
   document.getElementById("displayQuestionsExam").innerHTML = html;
-}
-
-function getQuestion(questionId) {
-  var request = new XMLHttpRequest();
-  request.onreadystatechange = function() {
-    if (this.readyState == 4 && this.status == 200) {
-      var response = JSON.parse(this.responseText);
-    }
-  };
-
-  var data = JSON.stringify({ id: questionId });
-
-  request.open("POST", "curl/getQuestion.php", true);
-  request.send(data);
 }
 
 function getQuestionsCQ() {
